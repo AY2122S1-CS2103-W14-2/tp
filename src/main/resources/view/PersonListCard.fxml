@@ -8,6 +8,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
@@ -31,15 +33,95 @@
       <HBox HBox.hgrow="ALWAYS">
         <VBox minWidth="300" HBox.hgrow="ALWAYS">
           <Label fx:id="personalParticulars" text="Personal Particulars" />
-          <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-          <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-          <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+
+          <HBox alignment="CENTER_LEFT">
+            <ImageView
+                    fitHeight="10.0"
+                    fitWidth="10.0"
+                    smooth="false"
+                    HBox.hgrow="NEVER" >
+              <image>
+                <Image url="@/images/phone_icon.png" />
+              </image>
+            </ImageView>
+            <Region minWidth="5" HBox.hgrow="NEVER"/>
+            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+          </HBox>
+
+          <HBox alignment="CENTER_LEFT">
+            <ImageView
+                    fitHeight="10.0"
+                    fitWidth="10.0"
+                    smooth="false"
+                    HBox.hgrow="NEVER" >
+              <image>
+                <Image url="@/images/home_icon.png" />
+              </image>
+            </ImageView>
+            <Region minWidth="5" HBox.hgrow="NEVER"/>
+            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+          </HBox>
+
+          <HBox alignment="CENTER_LEFT">
+            <ImageView
+                    fitHeight="10.0"
+                    fitWidth="10.0"
+                    smooth="false"
+                    HBox.hgrow="NEVER" >
+              <image>
+                <Image url="@/images/email_icon.png" />
+              </image>
+            </ImageView>
+            <Region minWidth="5" HBox.hgrow="NEVER"/>
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+          </HBox>
         </VBox>
+
         <VBox minWidth="300" HBox.hgrow="ALWAYS">
           <Label id="nokParticulars" text="Next-Of-Kin Particulars" />
-          <Label styleClass="cell_small_label" text="Peter Parker" />
-          <Label styleClass="cell_small_label" text="9555 3333" />
-          <Label styleClass="cell_small_label" text="123 Orchard Road #01-123 S800123" />
+
+          <HBox alignment="CENTER_LEFT">
+            <ImageView
+                    fitHeight="10.0"
+                    fitWidth="10.0"
+                    smooth="false"
+                    HBox.hgrow="NEVER" >
+              <image>
+                <Image url="@/images/track2gather_icon.png" />
+              </image>
+            </ImageView>
+            <Region minWidth="5" HBox.hgrow="NEVER"/>
+            <Label styleClass="cell_small_label" text="Peter Parker" />
+          </HBox>
+
+          <HBox alignment="CENTER_LEFT">
+            <ImageView
+                    fitHeight="10.0"
+                    fitWidth="10.0"
+                    smooth="false"
+                    HBox.hgrow="NEVER" >
+              <image>
+                <Image url="@/images/phone_icon.png" />
+              </image>
+            </ImageView>
+            <Region minWidth="5" HBox.hgrow="NEVER"/>
+            <Label styleClass="cell_small_label" text="9555 3333" />
+          </HBox>
+
+          <HBox alignment="CENTER_LEFT">
+            <ImageView
+                    fitHeight="10.0"
+                    fitWidth="10.0"
+                    smooth="false"
+                    HBox.hgrow="NEVER" >
+              <image>
+                <Image url="@/images/home_icon.png" />
+              </image>
+            </ImageView>
+            <Region minWidth="5" HBox.hgrow="NEVER"/>
+            <Label styleClass="cell_small_label" text="123 Orchard Road #01-123 S800123" />
+          </HBox>
+
         </VBox>
       </HBox>
     </VBox>

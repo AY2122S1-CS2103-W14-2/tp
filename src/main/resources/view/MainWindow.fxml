@@ -16,9 +16,9 @@
 <?import javafx.scene.layout.HBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="Track2Gather App" minWidth="650" minHeight="600" onCloseRequest="#handleExit">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/track2gather_icon.png" />
   </icons>
   <scene>
     <Scene>
@@ -39,28 +39,27 @@
           </Menu>
         </MenuBar>
 
-        <HBox fx:id="inAppTitle" HBox.hgrow="ALWAYS">
+        <HBox fx:id="inAppTitle" HBox.hgrow="ALWAYS" >
           <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
+            <Insets top="0" right="10" bottom="0" left="10" />
           </padding>
-          <Label fx:id="title" text="Track2Gather">
-            <padding>
-              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-            </padding>
-          </Label>
-          <Region HBox.hgrow="ALWAYS"/>
+          <Label fx:id="title" text="Track2Gather" minWidth="400"/>
+          <Region HBox.hgrow="ALWAYS" />
           <ImageView
                   fx:id="displayPicture"
-                  fitHeight="75.0"
-                  fitWidth="75.0"
-                  pickOnBounds="true"
-                  preserveRatio="true"
+                  fitHeight="60.0"
+                  fitWidth="100.0"
                   smooth="false"
-                  HBox.hgrow="NEVER">
+                  preserveRatio="true"
+                  pickOnBounds="true"
+                  HBox.hgrow="NEVER" >
             <image>
-              <Image url="@/images/address_book_32.png" />
+              <Image url="@/images/track2gather_icon.png" />
             </image>
           </ImageView>
+          <padding>
+            <Insets bottom="0" left="10.0" right="30.0" top="0" />
+          </padding>
         </HBox>
 
         <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
