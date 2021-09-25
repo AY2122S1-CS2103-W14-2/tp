@@ -56,7 +56,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/andrew.md)]
 
 * Role: Developer
-* Responsibilities: Git and Testing
+* Responsibilities: Git and Tqesting
 
 ### Jennifer
 
