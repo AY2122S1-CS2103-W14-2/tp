@@ -1,6 +1,6 @@
 | layout | title
 | --- | --- |
-| page | John Doe's Project Portfolio Page
+| page | Lauren Shak's Project Portfolio Page
 ---
 
 ### Project: Track2Gather
