@@ -322,8 +322,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a1. Track2Gather shows an error message.
       
       Use case resumes at step 2.
-* 3a. The given fields to edit are invalid.
-  * 3a1. Track2Gather shows an error message.
+* 3b. The given fields to edit are invalid.
+  * 3b1. Track2Gather shows an error message.
       
       Use case resumes at step 2.
 
