@@ -284,7 +284,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Track2Gather` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Help command**
+**Use case: UC01 - Access help page**
 
 **MSS:**
 
@@ -302,7 +302,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 
-**Use case: UC02 - Edit details of existing contacts**
+**Use case: UC02 -  Edit details of an existing contact**
 
 **MSS:**
 
@@ -367,6 +367,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a1. Track2Gather shows the correct format for adding contacts.
     
     Use case resumes from step 2.
+
+**Use case: UC05 - Delete a contact**
+
+**MSS:**
+
+1. User chooses to delete a contact.
+2.	Track2Gather shows a list of persons.
+3.	Track2Gather requests the user to specify the person to be deleted.
+4.	User chooses a specific person in the list.
+5.	Track2Gather deletes the person.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+    
+    Use case ends.
+* 4a. The given index is invalid.
+  * 4a1. Track2Gather shows an error message.
+        
+    Use case resumes from step 2.
+
+**Use case: UC06 - Clear all contacts**
+
+**MSS:**
+
+1. User chooses to clear all contacts.
+2.	Track2Gather warns user that all contacts will be deleted.
+3.	User chooses to proceed.
+4.	Track2Gather clears all contacts.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User chooses not to proceed with clearing all contacts.
+    
+    Use case ends.
 
 
 *{More to be added}*
