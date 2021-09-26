@@ -269,14 +269,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| ------- | ---------------------------------------- | ------------------------------ | ----------------------------------------------------------------------- |
-| `* * *` | new user                                 | see usage instructions         | refer to instructions when I forget how to use the app                  |
-| `* * *` | user                                     | update contacts’ contact details without re-adding that contact| avoid re-entering existing data         |
-| `* * *` | user                                     | find a person by name          | locate details of persons without having to go through the entire list  |
-| `* * *` | user                                     | save my contacts               | keep track of their details between sessions                            |
-| `* *`   | experienced user                         | directly adjust my save files  | bypass the CLI for simple bulk tasks                                    |
-| `* * *` | user                                     | add my contact’s next-of-kin’s information | contact the patient’s next-of-kin should an emergency arise |
+| Priority | As a …​                                  | I want to …​                   | So that I can…​                                                         |
+| -------- | ---------------------------------------- | ------------------------------ | ----------------------------------------------------------------------- |
+| `* * *`  | new user                                 | see usage instructions         | refer to instructions when I forget how to use the app                  |
+| `* * *`  | user                                     | update contacts’ contact details without re-adding that contact | avoid re-entering existing data        |
+| `* * *`  | user                                     | find a person by name          | locate details of persons without having to go through the entire list  |
+| `* * *`  | user                                     | save my contacts               | keep track of their details between sessions                            |
+| `* *`    | experienced user                         | directly adjust my save files  | bypass the CLI for simple bulk tasks                                    |
+| `* * *`  | user                                     | add my contact’s next-of-kin’s information | contact the patient’s next-of-kin should an emergency arise |
 
 *{More to be added}*
 
