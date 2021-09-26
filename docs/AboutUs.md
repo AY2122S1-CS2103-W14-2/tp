@@ -50,10 +50,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Andrew Sutjipto
 
-<img src="images/andrew.png" width="200px">
+<img src="images/over-fitted.png" width="200px">
 
 [[github](http://github.com/over-fitted)]
-[[portfolio](team/andrew.md)]
+[[portfolio](team/over-fitted.md)]
 
 * Role: Developer
 * Responsibilities: Git and Testing
