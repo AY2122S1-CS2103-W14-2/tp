@@ -58,6 +58,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Git and Testing
 
+### Ng Wei En
+
+<img src="images/wei2912.png" width="200px">
+
+[[github](http://github.com/wei2912)]
+[[portfolio](team/wei2912.md)]
+
+* Role: Developer
+* Responsibilities: GitHub Actions and Integration
+
 ### Jennifer
 
 <img src="images/jennibearduit.png" width="200px">
