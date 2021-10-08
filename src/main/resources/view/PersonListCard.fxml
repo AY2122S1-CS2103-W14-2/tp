@@ -29,9 +29,7 @@
       </HBox>
       <FlowPane fx:id="tags" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="homeAddress" styleClass="cell_small_label" text="\$homeAddress"/>
-      <Label fx:id="workAddress" styleClass="cell_small_label" text="\$workAddress"/>
-      <Label fx:id="quarantineAddress" styleClass="cell_small_label" text="\$quarantineAddress"/>
+      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
     </VBox>
   </GridPane>

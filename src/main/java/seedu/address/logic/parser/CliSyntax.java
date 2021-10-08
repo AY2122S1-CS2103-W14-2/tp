@@ -9,7 +9,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_PHONE = new Prefix("p/");
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
-    public static final Prefix PREFIX_HOME_ADDRESS = new Prefix("ha/");
+    // TODO: Change actual prefix when modifying Add command for Home Address.
+    public static final Prefix PREFIX_HOME_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_WORK_ADDRESS = new Prefix("wa/");
     public static final Prefix PREFIX_QUARANTINE_ADDRESS = new Prefix("qa/");
     public static final Prefix PREFIX_SHN_PERIOD = new Prefix("as/");
@@ -20,4 +21,5 @@ public class CliSyntax {
     // TODO: Remove tag prefix when integrating changes to Add command.
     @Deprecated
     public static final Prefix PREFIX_TAG = new Prefix("t/");
+
 }

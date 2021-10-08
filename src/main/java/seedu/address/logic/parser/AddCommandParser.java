@@ -14,7 +14,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SHN_PERIOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WORK_ADDRESS;
 
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -52,14 +51,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address homeAddress = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_HOME_ADDRESS).get());
-        Optional<String> workAddressOptional = argMultimap.getValue(PREFIX_WORK_ADDRESS);
-        Optional<Address> workAddress = workAddressOptional.isEmpty()
-                ? Optional.empty()
-                : Optional.of(ParserUtil.parseAddress(workAddressOptional.get()));
-        Optional<String> quarantineAddressOptional = argMultimap.getValue(PREFIX_QUARANTINE_ADDRESS);
-        Optional<Address> quarantineAddress = quarantineAddressOptional.isEmpty()
-                ? Optional.empty()
-                : Optional.of(ParserUtil.parseAddress(quarantineAddressOptional.get()));
+        Object workAddress = null; // TODO
+        Object quarantineAddress = null; // TODO
         Object shnPeriod = null; // TODO
         Object caseNumber = null; // TODO
         Object nextOfKinName = null; // TODO
@@ -68,8 +61,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         // TODO: To be removed after integrating changes into Add command.
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, homeAddress, workAddress, quarantineAddress,
-                shnPeriod, caseNumber, nextOfKinName, nextOfKinPhone, nextOfKinAddress, tagList);
+        Person person = new Person(name, phone, email, homeAddress, workAddress, quarantineAddress, shnPeriod,
+                caseNumber, nextOfKinName, nextOfKinPhone, nextOfKinAddress, tagList);
 
         return new AddCommand(person);
     }
