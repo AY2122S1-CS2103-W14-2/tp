@@ -3,9 +3,11 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
@@ -40,6 +42,32 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private HBox phoneHBox;
+    @FXML
+    private HBox homeHBox;
+    @FXML
+    private HBox emailHBox;
+    @FXML
+    private HBox workAddressHBox;
+    @FXML
+    private HBox shnAddressHBox;
+    @FXML
+    private HBox shnPeriodHBox;
+    @FXML
+    private VBox nextOfKinBlock;
+    @FXML
+    private Label nextOfKinName;
+    @FXML
+    private Label nextOfKinPhone;
+    @FXML
+    private Label nextOfKinAddress;
+    @FXML
+    private HBox nextOfKinNameHBox;
+    @FXML
+    private HBox nextOfKinPhoneHBox;
+    @FXML
+    private HBox nextOfKinAddressHBox;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -55,6 +83,15 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label("Case #" + tag.tagName)));
+    }
+
+    /**
+     * Removes the specified {@code Node} from display.
+     * @param node The {@code Node} to hide from display.
+     */
+    private void hideNode(Node node) {
+        node.setManaged(false);
+        node.setVisible(false);
     }
 
     @Override
