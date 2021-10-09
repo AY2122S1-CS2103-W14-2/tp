@@ -41,28 +41,25 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @Deprecated
-    @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String homeAddress,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedPerson(String name, String phone, String email, String homeAddress, List<JsonAdaptedTag> tagged) {
         this(name, phone, email, homeAddress, null, null, null, null, null, null, null, tagged);
     }
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
-    @JsonCreator
     // TODO: JSON property for "address" to be renamed to "homeAddressed" when integrating
+    @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String homeAddress,
-                             @JsonProperty("workAddress") Object workAddress,
-                             @JsonProperty("quarantineAddress") Object quarantineAddress,
-                             @JsonProperty("shnPeriod") Object shnPeriod,
-                             @JsonProperty("caseNumber") Object caseNumber,
-                             @JsonProperty("nextOfKinName") Object nextOfKinName,
-                             @JsonProperty("nextOfKinPhone") Object nextOfKinPhone,
-                             @JsonProperty("nextOfKinAddress") Object nextOfKinAddress,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty(value = "workAddress", required = false) Object workAddress,
+                             @JsonProperty(value = "quarantineAddress", required = false) Object quarantineAddress,
+                             @JsonProperty(value = "shnPeriod", required = false) Object shnPeriod,
+                             @JsonProperty(value = "caseNumber", required = false) Object caseNumber,
+                             @JsonProperty(value = "nextOfKinName", required = false) Object nextOfKinName,
+                             @JsonProperty(value = "nextOfKinPhone", required = false) Object nextOfKinPhone,
+                             @JsonProperty(value = "nextOfKinAddress", required = false) Object nextOfKinAddress,
+                             @JsonProperty(value = "tagged", required = false) List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -151,7 +148,9 @@ class JsonAdaptedPerson {
         final Object modelNextOfKinAddress = nextOfKinAddress;
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelHomeAddress, modelQuarantineAddress, modelWorkAddress, modelShnPeriod, modelCaseNumber, modelNextOfKinName, modelNextOfKinPhone, modelNextOfKinAddress, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelHomeAddress, modelQuarantineAddress,
+                modelWorkAddress, modelShnPeriod, modelCaseNumber, modelNextOfKinName, modelNextOfKinPhone,
+                modelNextOfKinAddress, modelTags);
     }
 
 }
