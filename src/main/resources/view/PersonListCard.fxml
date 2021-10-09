@@ -28,7 +28,8 @@
           </minWidth>
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
-        <FlowPane fx:id="tags" HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="caseNumber" text="#placeholder" />
       </HBox>
       <HBox HBox.hgrow="ALWAYS">
         <VBox id="personalParticularsBlock" minWidth="300" HBox.hgrow="ALWAYS">
@@ -133,7 +134,7 @@
               </image>
             </ImageView>
             <Region minWidth="5" HBox.hgrow="NEVER"/>
-            <Label fx:id="nextOfKinName" styleClass="cell_small_label" text="\@place-holder" />
+            <Label fx:id="nextOfKinName" styleClass="cell_small_label" text="\@placeholder" />
           </HBox>
 
           <HBox fx:id="nextOfKinPhoneHBox" alignment="CENTER_LEFT">
@@ -147,7 +148,7 @@
               </image>
             </ImageView>
             <Region minWidth="5" HBox.hgrow="NEVER"/>
-            <Label fx:id="nextOfKinPhone" styleClass="cell_small_label" text="\@place-holder" />
+            <Label fx:id="nextOfKinPhone" styleClass="cell_small_label" text="\@placeholder" />
           </HBox>
 
           <HBox fx:id="nextOfKinAddressHBox" alignment="CENTER_LEFT">
@@ -161,7 +162,7 @@
               </image>
             </ImageView>
             <Region minWidth="5" HBox.hgrow="NEVER"/>
-            <Label fx:id="nextOfKinAddress" styleClass="cell_small_label" text="\@place-holder" />
+            <Label fx:id="nextOfKinAddress" styleClass="cell_small_label" text="\@placeholder" />
           </HBox>
 
         </VBox>
