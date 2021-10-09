@@ -27,20 +27,50 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
-    private final String address;
+    private final String homeAddress;
+    private final Object workAddress;
+    private final Object quarantineAddress;
+    private final Object shnPeriod;
+    private final Object caseNumber;
+    private final Object nextOfKinName;
+    private final Object nextOfKinPhone;
+    private final Object nextOfKinAddress;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
+    @Deprecated
+    public JsonAdaptedPerson(String name, String phone, String email, String homeAddress, List<JsonAdaptedTag> tagged) {
+        this(name, phone, email, homeAddress, null, null, null, null, null, null, null, tagged);
+    }
+
+    /**
+     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     */
+    // TODO: JSON property for "address" to be renamed to "homeAddress" when integrating
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String homeAddress,
+                             @JsonProperty(value = "workAddress", required = false) Object workAddress,
+                             @JsonProperty(value = "quarantineAddress", required = false) Object quarantineAddress,
+                             @JsonProperty(value = "shnPeriod", required = false) Object shnPeriod,
+                             @JsonProperty(value = "caseNumber", required = false) Object caseNumber,
+                             @JsonProperty(value = "nextOfKinName", required = false) Object nextOfKinName,
+                             @JsonProperty(value = "nextOfKinPhone", required = false) Object nextOfKinPhone,
+                             @JsonProperty(value = "nextOfKinAddress", required = false) Object nextOfKinAddress,
+                             @JsonProperty(value = "tagged", required = false) List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.homeAddress = homeAddress;
+        this.workAddress = workAddress;
+        this.quarantineAddress = quarantineAddress;
+        this.shnPeriod = shnPeriod;
+        this.caseNumber = caseNumber;
+        this.nextOfKinName = nextOfKinName;
+        this.nextOfKinPhone = nextOfKinPhone;
+        this.nextOfKinAddress = nextOfKinAddress;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -53,7 +83,14 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getHomeAddress().value;
+        homeAddress = source.getHomeAddress().value;
+        workAddress = source.getWorkAddress();
+        quarantineAddress = source.getQuarantineAddress();
+        shnPeriod = source.getShnPeriod();
+        caseNumber = source.getCaseNumber();
+        nextOfKinName = source.getNextOfKinName();
+        nextOfKinPhone = source.getNextOfKinPhone();
+        nextOfKinAddress = source.getNextOfKinAddress();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -94,16 +131,26 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
+        if (homeAddress == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
+        if (!Address.isValidAddress(homeAddress)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final Address modelHomeAddress = new Address(homeAddress);
+
+        final Object modelWorkAddress = workAddress;
+        final Object modelQuarantineAddress = quarantineAddress;
+        final Object modelShnPeriod = shnPeriod;
+        final Object modelCaseNumber = caseNumber;
+        final Object modelNextOfKinName = nextOfKinName;
+        final Object modelNextOfKinPhone = nextOfKinPhone;
+        final Object modelNextOfKinAddress = nextOfKinAddress;
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelHomeAddress, modelWorkAddress, modelQuarantineAddress,
+                modelShnPeriod, modelCaseNumber, modelNextOfKinName, modelNextOfKinPhone, modelNextOfKinAddress,
+                modelTags);
     }
 
 }
