@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -22,8 +23,8 @@ public class Person {
 
     // Data fields
     private final Address homeAddress;
-    private final Object workAddress;
-    private final Object quarantineAddress;
+    private final Optional<Address> workAddress;
+    private final Optional<Address> quarantineAddress;
     private final Object shnPeriod;
     private final Object caseNumber;
     private final Object nextOfKinName;
@@ -36,10 +37,10 @@ public class Person {
     /**
      * The following fields must be present and not null: name, phone, email, home_address, tags.
      */
-    public Person(Name name, Phone phone, Email email, Address homeAddress, Object workAddress,
-                  Object quarantineAddress, Object shnPeriod, Object caseNumber, Object nextOfKinName,
+    public Person(Name name, Phone phone, Email email, Address homeAddress, Optional<Address> workAddress,
+                  Optional<Address> quarantineAddress, Object shnPeriod, Object caseNumber, Object nextOfKinName,
                   Object nextOfKinPhone, Object nextOfKinAddress, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, homeAddress, tags);
+        requireAllNonNull(name, phone, email, homeAddress, workAddress, quarantineAddress, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -56,7 +57,7 @@ public class Person {
 
     @Deprecated
     public Person(Name name, Phone phone, Email email, Address homeAddress, Set<Tag> tags) {
-        this(name, phone, email, homeAddress, null, null, null, null, null, null, null, tags);
+        this(name, phone, email, homeAddress, Optional.empty(), Optional.empty(), null, null, null, null, null, tags);
     }
 
     public Name getName() {
@@ -75,11 +76,11 @@ public class Person {
         return homeAddress;
     }
 
-    public Object getWorkAddress() {
+    public Optional<Address> getWorkAddress() {
         return workAddress;
     }
 
-    public Object getQuarantineAddress() {
+    public Optional<Address> getQuarantineAddress() {
         return quarantineAddress;
     }
 

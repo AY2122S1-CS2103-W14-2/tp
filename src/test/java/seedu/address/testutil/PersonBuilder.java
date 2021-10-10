@@ -68,8 +68,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public PersonBuilder withHomeAddress(String address) {
-        this.homeAddress = new Address(address);
+    public PersonBuilder withHomeAddress(String homeAddress) {
+        this.homeAddress = new Address(homeAddress);
         return this;
     }
 

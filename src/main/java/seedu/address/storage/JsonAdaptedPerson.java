@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -28,8 +29,8 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String homeAddress;
-    private final Object workAddress;
-    private final Object quarantineAddress;
+    private final String workAddress;
+    private final String quarantineAddress;
     private final Object shnPeriod;
     private final Object caseNumber;
     private final Object nextOfKinName;
@@ -48,12 +49,11 @@ class JsonAdaptedPerson {
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
-    // TODO: JSON property for "address" to be renamed to "homeAddress" when integrating
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String homeAddress,
-                             @JsonProperty(value = "workAddress", required = false) Object workAddress,
-                             @JsonProperty(value = "quarantineAddress", required = false) Object quarantineAddress,
+                             @JsonProperty("email") String email, @JsonProperty("homeAddress") String homeAddress,
+                             @JsonProperty(value = "workAddress", required = false) String workAddress,
+                             @JsonProperty(value = "quarantineAddress", required = false) String quarantineAddress,
                              @JsonProperty(value = "shnPeriod", required = false) Object shnPeriod,
                              @JsonProperty(value = "caseNumber", required = false) Object caseNumber,
                              @JsonProperty(value = "nextOfKinName", required = false) Object nextOfKinName,
@@ -84,8 +84,8 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         homeAddress = source.getHomeAddress().value;
-        workAddress = source.getWorkAddress();
-        quarantineAddress = source.getQuarantineAddress();
+        workAddress = source.getWorkAddress().map(Object::toString).orElse(null);
+        quarantineAddress = source.getQuarantineAddress().map(Object::toString).orElse(null);
         shnPeriod = source.getShnPeriod();
         caseNumber = source.getCaseNumber();
         nextOfKinName = source.getNextOfKinName();
@@ -139,8 +139,22 @@ class JsonAdaptedPerson {
         }
         final Address modelHomeAddress = new Address(homeAddress);
 
-        final Object modelWorkAddress = workAddress;
-        final Object modelQuarantineAddress = quarantineAddress;
+        if (workAddress != null && !Address.isValidAddress(workAddress)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
+        final Optional<Address> modelWorkAddress =
+                workAddress == null
+                        ? Optional.empty()
+                        : Optional.of(new Address(homeAddress));
+
+        if (quarantineAddress != null && !Address.isValidAddress(quarantineAddress)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
+        final Optional<Address> modelQuarantineAddress =
+                workAddress == null
+                        ? Optional.empty()
+                        : Optional.of(new Address(homeAddress));
+
         final Object modelShnPeriod = shnPeriod;
         final Object modelCaseNumber = caseNumber;
         final Object modelNextOfKinName = nextOfKinName;
@@ -148,9 +162,9 @@ class JsonAdaptedPerson {
         final Object modelNextOfKinAddress = nextOfKinAddress;
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelHomeAddress, modelWorkAddress, modelQuarantineAddress,
-                modelShnPeriod, modelCaseNumber, modelNextOfKinName, modelNextOfKinPhone, modelNextOfKinAddress,
-                modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelHomeAddress, modelWorkAddress,
+                modelQuarantineAddress, modelShnPeriod, modelCaseNumber, modelNextOfKinName, modelNextOfKinPhone,
+                modelNextOfKinAddress, modelTags);
     }
 
 }

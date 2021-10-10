@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Address;
 import seedu.address.model.person.Person;
 
 /**
@@ -35,7 +36,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private Label homeAddress;
+    @FXML
+    private Label workAddress;
+    @FXML
+    private Label quarantineAddress;
     @FXML
     private Label email;
     @FXML
@@ -50,7 +55,10 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
-        address.setText(person.getHomeAddress().value);
+        homeAddress.setText(person.getHomeAddress().value);
+        workAddress.setText(person.getWorkAddress().map(Address::toString).orElse(""));
+        quarantineAddress.setText(person.getQuarantineAddress().map(Address::toString).orElse(""));
+
         email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
