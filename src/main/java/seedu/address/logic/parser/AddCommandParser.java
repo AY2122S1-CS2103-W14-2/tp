@@ -66,9 +66,18 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ? Optional.empty()
                 : Optional.of(ParserUtil.parseShnPeriod(shnPeriodOptional.get()));
         Object caseNumber = null; // TODO
-        Object nextOfKinName = null; // TODO
-        Object nextOfKinPhone = null; // TODO
-        Object nextOfKinAddress = null; // TODO
+        Optional<String> nextOfKinNameOptional = argMultimap.getValue(PREFIX_NEXT_OF_KIN_NAME);
+        Optional<Name> nextOfKinName = nextOfKinNameOptional.isEmpty()
+                ? Optional.empty()
+                : Optional.of(ParserUtil.parseName(nextOfKinNameOptional.get()));
+        Optional<String> nextOfKinPhoneOptional = argMultimap.getValue(PREFIX_NEXT_OF_KIN_PHONE);
+        Optional<Phone> nextOfKinPhone = nextOfKinPhoneOptional.isEmpty()
+                ? Optional.empty()
+                : Optional.of(ParserUtil.parsePhone(nextOfKinPhoneOptional.get()));
+        Optional<String> nextOfKinAddressOptional = argMultimap.getValue(PREFIX_NEXT_OF_KIN_ADDRESS);
+        Optional<Address> nextOfKinAddress = nextOfKinAddressOptional.isEmpty()
+                ? Optional.empty()
+                : Optional.of(ParserUtil.parseAddress(nextOfKinAddressOptional.get()));
         // TODO: To be removed after integrating changes into Add command.
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

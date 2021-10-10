@@ -27,9 +27,9 @@ public class Person {
     private final Optional<Address> quarantineAddress;
     private final Optional<ShnPeriod> shnPeriod;
     private final Object caseNumber;
-    private final Object nextOfKinName;
-    private final Object nextOfKinPhone;
-    private final Object nextOfKinAddress;
+    private final Optional<Name> nextOfKinName;
+    private final Optional<Phone> nextOfKinPhone;
+    private final Optional<Address> nextOfKinAddress;
     // TODO: To remove when integrating changes to Add command.
     @Deprecated
     private final Set<Tag> tags = new HashSet<>();
@@ -39,8 +39,10 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address homeAddress, Optional<Address> workAddress,
                   Optional<Address> quarantineAddress, Optional<ShnPeriod> shnPeriod, Object caseNumber,
-                  Object nextOfKinName, Object nextOfKinPhone, Object nextOfKinAddress, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, homeAddress, workAddress, quarantineAddress, tags);
+                  Optional<Name> nextOfKinName, Optional<Phone> nextOfKinPhone, Optional<Address> nextOfKinAddress,
+                  Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, homeAddress, workAddress, quarantineAddress,
+                nextOfKinName, nextOfKinPhone, nextOfKinAddress, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -61,7 +63,7 @@ public class Person {
     @Deprecated
     public Person(Name name, Phone phone, Email email, Address homeAddress, Set<Tag> tags) {
         this(name, phone, email, homeAddress, Optional.empty(), Optional.empty(), Optional.empty(),
-                null, null, null, null, tags);
+                null, Optional.empty(), Optional.empty(), Optional.empty(), tags);
     }
 
     public Name getName() {
@@ -96,15 +98,15 @@ public class Person {
         return caseNumber;
     }
 
-    public Object getNextOfKinName() {
+    public Optional<Name> getNextOfKinName() {
         return nextOfKinName;
     }
 
-    public Object getNextOfKinPhone() {
+    public Optional<Phone> getNextOfKinPhone() {
         return nextOfKinPhone;
     }
 
-    public Object getNextOfKinAddress() {
+    public Optional<Address> getNextOfKinAddress() {
         return nextOfKinAddress;
     }
 

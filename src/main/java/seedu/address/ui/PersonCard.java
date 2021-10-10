@@ -8,7 +8,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.ShnPeriod;
 
 /**
@@ -47,6 +49,12 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label shnPeriod;
     @FXML
+    private Label nextOfKinName;
+    @FXML
+    private Label nextOfKinPhone;
+    @FXML
+    private Label nextOfKinAddress;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -63,6 +71,9 @@ public class PersonCard extends UiPart<Region> {
         quarantineAddress.setText(person.getQuarantineAddress().map(Address::toString).orElse(""));
         shnPeriod.setText(person.getShnPeriod().map(ShnPeriod::toString).orElse(""));
         email.setText(person.getEmail().value);
+        nextOfKinName.setText(person.getNextOfKinName().map(Name::toString).orElse(""));
+        nextOfKinPhone.setText(person.getNextOfKinPhone().map(Phone::toString).orElse(""));
+        nextOfKinAddress.setText(person.getNextOfKinAddress().map(Address::toString).orElse(""));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
