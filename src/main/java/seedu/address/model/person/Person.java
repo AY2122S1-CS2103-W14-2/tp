@@ -25,7 +25,7 @@ public class Person {
     private final Address homeAddress;
     private final Optional<Address> workAddress;
     private final Optional<Address> quarantineAddress;
-    private final Object shnPeriod;
+    private final Optional<ShnPeriod> shnPeriod;
     private final Object caseNumber;
     private final Object nextOfKinName;
     private final Object nextOfKinPhone;
@@ -38,8 +38,8 @@ public class Person {
      * The following fields must be present and not null: name, phone, email, home_address, tags.
      */
     public Person(Name name, Phone phone, Email email, Address homeAddress, Optional<Address> workAddress,
-                  Optional<Address> quarantineAddress, Object shnPeriod, Object caseNumber, Object nextOfKinName,
-                  Object nextOfKinPhone, Object nextOfKinAddress, Set<Tag> tags) {
+                  Optional<Address> quarantineAddress, Optional<ShnPeriod> shnPeriod, Object caseNumber,
+                  Object nextOfKinName, Object nextOfKinPhone, Object nextOfKinAddress, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, homeAddress, workAddress, quarantineAddress, tags);
         this.name = name;
         this.phone = phone;
@@ -55,9 +55,13 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Deprecated constructor.
+     */
     @Deprecated
     public Person(Name name, Phone phone, Email email, Address homeAddress, Set<Tag> tags) {
-        this(name, phone, email, homeAddress, Optional.empty(), Optional.empty(), null, null, null, null, null, tags);
+        this(name, phone, email, homeAddress, Optional.empty(), Optional.empty(), Optional.empty(),
+                null, null, null, null, tags);
     }
 
     public Name getName() {
@@ -84,7 +88,7 @@ public class Person {
         return quarantineAddress;
     }
 
-    public Object getShnPeriod() {
+    public Optional<ShnPeriod> getShnPeriod() {
         return shnPeriod;
     }
 

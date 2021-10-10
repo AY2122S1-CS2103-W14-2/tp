@@ -25,6 +25,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.ShnPeriod;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -60,7 +61,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Optional<Address> quarantineAddress = quarantineAddressOptional.isEmpty()
                 ? Optional.empty()
                 : Optional.of(ParserUtil.parseAddress(quarantineAddressOptional.get()));
-        Object shnPeriod = null; // TODO
+        Optional<String> shnPeriodOptional = argMultimap.getValue(PREFIX_SHN_PERIOD);
+        Optional<ShnPeriod> shnPeriod = shnPeriodOptional.isEmpty()
+                ? Optional.empty()
+                : Optional.of(ParserUtil.parseShnPeriod(shnPeriodOptional.get()));
         Object caseNumber = null; // TODO
         Object nextOfKinName = null; // TODO
         Object nextOfKinPhone = null; // TODO
