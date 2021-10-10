@@ -4,11 +4,13 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "homeAddress": "123, Jurong West Ave 6, #08-111",
+    "caseNumber": "123",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "homeAddress": "4th street"
+    "homeAddress": "4th street",
+    "caseNumber": "456"
   } ]
 }

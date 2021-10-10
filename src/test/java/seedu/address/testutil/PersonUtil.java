@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CASE_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOME_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -34,6 +35,7 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_HOME_ADDRESS + person.getHomeAddress().value + " ");
+        sb.append(PREFIX_CASE_NUMBER + person.getCaseNumber().value + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

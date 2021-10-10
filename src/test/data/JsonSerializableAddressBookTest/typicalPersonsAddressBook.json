@@ -4,43 +4,50 @@
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
-    "homeAddress": "123, Jurong West Ave 6, #08-111",
+    "homeAddress" : "123, Jurong West Ave 6, #08-111",
+    "caseNumber" : "5",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "homeAddress": "311, Clementi Ave 2, #02-25",
+    "homeAddress" : "311, Clementi Ave 2, #02-25",
+    "caseNumber" : "6",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "homeAddress": "wall street",
+    "homeAddress" : "wall street",
+    "caseNumber" : "7",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
-    "homeAddress": "10th street",
+    "homeAddress" : "10th street",
+    "caseNumber" : "8",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
-    "homeAddress": "michegan ave",
+    "homeAddress" : "michegan ave",
+    "caseNumber" : "9",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
-    "homeAddress": "little tokyo",
+    "homeAddress" : "little tokyo",
+    "caseNumber" : "10",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
-    "homeAddress": "4th street",
+    "homeAddress" : "4th street",
+    "caseNumber" : "11",
     "tagged" : [ ]
   } ]
 }

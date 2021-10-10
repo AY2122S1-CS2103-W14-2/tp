@@ -20,6 +20,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.CaseNumber;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -129,6 +130,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address homeAddress;
+        private CaseNumber caseNumber;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -142,6 +144,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setHomeAddress(toCopy.homeAddress);
+            setCaseNumber(toCopy.caseNumber);
             setTags(toCopy.tags);
         }
 
@@ -184,6 +187,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(homeAddress);
         }
 
+        public void setCaseNumber(CaseNumber caseNumber) {
+            this.caseNumber = caseNumber;
+        }
+
+        public Optional<CaseNumber> getCaseNumber() {
+            return Optional.ofNullable(caseNumber);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -220,6 +231,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getHomeAddress().equals(e.getHomeAddress())
+                    && getCaseNumber().equals(e.getCaseNumber())
                     && getTags().equals(e.getTags());
         }
     }

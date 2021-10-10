@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CASE_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOME_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -34,6 +35,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_HOME_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_HOME_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_CASE_NUMBER_AMY = "1";
+    public static final String VALID_CASE_NUMBER_BOB = "2";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -45,6 +48,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String HOME_ADDRESS_DESC_AMY = " " + PREFIX_HOME_ADDRESS + VALID_HOME_ADDRESS_AMY;
     public static final String HOME_ADDRESS_DESC_BOB = " " + PREFIX_HOME_ADDRESS + VALID_HOME_ADDRESS_BOB;
+    public static final String CASE_NUMBER_DESC_AMY = " " + PREFIX_CASE_NUMBER + VALID_CASE_NUMBER_AMY;
+    public static final String CASE_NUMBER_DESC_BOB = " " + PREFIX_CASE_NUMBER + VALID_CASE_NUMBER_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -53,6 +58,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     // empty string not allowed for addresses
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_HOME_ADDRESS;
+    public static final String INVALID_CASE_NUMBER_DESC = " " + PREFIX_CASE_NUMBER + "-1"; // negative not allowed
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

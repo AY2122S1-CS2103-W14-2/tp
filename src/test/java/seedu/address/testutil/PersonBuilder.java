@@ -1,9 +1,11 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.CaseNumber;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -20,11 +22,13 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_HOME_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_CASE_NUMBER = "456";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address homeAddress;
+    private CaseNumber caseNumber;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +39,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         homeAddress = new Address(DEFAULT_HOME_ADDRESS);
+        caseNumber = new CaseNumber(DEFAULT_CASE_NUMBER);
         tags = new HashSet<>();
     }
 
@@ -46,6 +51,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         homeAddress = personToCopy.getHomeAddress();
+        caseNumber = personToCopy.getCaseNumber();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -89,8 +95,22 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code CaseNumber} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withCaseNumber(String caseNumber) {
+        this.caseNumber = new CaseNumber(caseNumber);
+        return this;
+    }
+
+    /**
+     * Creates {@code Person} with attributes corresponding to those set by the builder.
+     *
+     * @return built custom {@code Person}
+     */
     public Person build() {
-        return new Person(name, phone, email, homeAddress, tags);
+        return new Person(name, phone, email, homeAddress, Optional.empty(), Optional.empty(), Optional.empty(),
+                caseNumber, Optional.empty(), Optional.empty(), Optional.empty(), tags);
     }
 
 }

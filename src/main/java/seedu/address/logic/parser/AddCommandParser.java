@@ -21,6 +21,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.CaseNumber;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -44,7 +45,8 @@ public class AddCommandParser implements Parser<AddCommand> {
                 PREFIX_CASE_NUMBER, PREFIX_NEXT_OF_KIN_NAME, PREFIX_NEXT_OF_KIN_PHONE, PREFIX_NEXT_OF_KIN_ADDRESS,
                 PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_HOME_ADDRESS)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_HOME_ADDRESS,
+                                PREFIX_CASE_NUMBER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -65,7 +67,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Optional<ShnPeriod> shnPeriod = shnPeriodOptional.isEmpty()
                 ? Optional.empty()
                 : Optional.of(ParserUtil.parseShnPeriod(shnPeriodOptional.get()));
-        Object caseNumber = null; // TODO
+        CaseNumber caseNumber = ParserUtil.parseCaseNumber(argMultimap.getValue(PREFIX_CASE_NUMBER).get());
         Optional<String> nextOfKinNameOptional = argMultimap.getValue(PREFIX_NEXT_OF_KIN_NAME);
         Optional<Name> nextOfKinName = nextOfKinNameOptional.isEmpty()
                 ? Optional.empty()

@@ -26,7 +26,7 @@ public class Person {
     private final Optional<Address> workAddress;
     private final Optional<Address> quarantineAddress;
     private final Optional<ShnPeriod> shnPeriod;
-    private final Object caseNumber;
+    private final CaseNumber caseNumber;
     private final Optional<Name> nextOfKinName;
     private final Optional<Phone> nextOfKinPhone;
     private final Optional<Address> nextOfKinAddress;
@@ -38,7 +38,7 @@ public class Person {
      * The following fields must be present and not null: name, phone, email, home_address, tags.
      */
     public Person(Name name, Phone phone, Email email, Address homeAddress, Optional<Address> workAddress,
-                  Optional<Address> quarantineAddress, Optional<ShnPeriod> shnPeriod, Object caseNumber,
+                  Optional<Address> quarantineAddress, Optional<ShnPeriod> shnPeriod, CaseNumber caseNumber,
                   Optional<Name> nextOfKinName, Optional<Phone> nextOfKinPhone, Optional<Address> nextOfKinAddress,
                   Set<Tag> tags) {
         requireAllNonNull(name, phone, email, homeAddress, workAddress, quarantineAddress,
@@ -94,7 +94,7 @@ public class Person {
         return shnPeriod;
     }
 
-    public Object getCaseNumber() {
+    public CaseNumber getCaseNumber() {
         return caseNumber;
     }
 
@@ -155,7 +155,7 @@ public class Person {
                 // && otherPerson.getWorkAddress().equals(getWorkAddress())
                 // && otherPerson.getQuarantineAddress().equals(getQuarantineAddress())
                 // && otherPerson.getShnPeriod().equals(getShnPeriod())
-                // && otherPerson.getCaseNumber().equals(getCaseNumber())
+                && otherPerson.getCaseNumber().equals(getCaseNumber())
                 // && otherPerson.getNextOfKinName().equals(getNextOfKinName())
                 // && otherPerson.getNextOfKinPhone().equals(getNextOfKinPhone())
                 // && otherPerson.getNextOfKinAddress().equals(getNextOfKinAddress())

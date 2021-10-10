@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.CaseNumber;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -33,7 +34,7 @@ class JsonAdaptedPerson {
     private final String workAddress;
     private final String quarantineAddress;
     private final String shnPeriod;
-    private final Object caseNumber;
+    private final String caseNumber;
     private final String nextOfKinName;
     private final String nextOfKinPhone;
     private final String nextOfKinAddress;
@@ -57,7 +58,7 @@ class JsonAdaptedPerson {
                              @JsonProperty(value = "workAddress", required = false) String workAddress,
                              @JsonProperty(value = "quarantineAddress", required = false) String quarantineAddress,
                              @JsonProperty(value = "shnPeriod", required = false) String shnPeriod,
-                             @JsonProperty(value = "caseNumber", required = false) Object caseNumber,
+                             @JsonProperty(value = "caseNumber", required = false) String caseNumber,
                              @JsonProperty(value = "nextOfKinName", required = false) String nextOfKinName,
                              @JsonProperty(value = "nextOfKinPhone", required = false) String nextOfKinPhone,
                              @JsonProperty(value = "nextOfKinAddress", required = false)
@@ -90,7 +91,7 @@ class JsonAdaptedPerson {
         workAddress = source.getWorkAddress().map(Object::toString).orElse(null);
         quarantineAddress = source.getQuarantineAddress().map(Object::toString).orElse(null);
         shnPeriod = source.getShnPeriod().map(Object::toString).orElse(null);
-        caseNumber = source.getCaseNumber();
+        caseNumber = source.getCaseNumber().value;
         nextOfKinName = source.getNextOfKinName().map(name -> name.toString()).orElse(null);
         nextOfKinPhone = source.getNextOfKinPhone().map(phone -> phone.toString()).orElse(null);
         nextOfKinAddress = source.getNextOfKinAddress().map(address -> address.toString()).orElse(null);
@@ -166,7 +167,10 @@ class JsonAdaptedPerson {
                         ? Optional.empty()
                         : Optional.of(new ShnPeriod(shnPeriod));
 
-        final Object modelCaseNumber = caseNumber;
+        if (!CaseNumber.isValidCaseNumber(caseNumber)) {
+            throw new IllegalValueException(CaseNumber.MESSAGE_CONSTRAINTS);
+        }
+        final CaseNumber modelCaseNumber = new CaseNumber(caseNumber);
 
         if (nextOfKinName != null && !Name.isValidName(nextOfKinName)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
