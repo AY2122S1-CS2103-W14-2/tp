@@ -87,7 +87,7 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         caseNumber.setText(String.format("#%1$6s", person.getCaseNumber().value).replace(' ', '0'));
         homeAddress.setText(person.getHomeAddress().value);
-      
+
         person.getWorkAddress().map(Object::toString).ifPresentOrElse(
             text -> workAddress.setText(text), () -> hideNode(workAddressHBox));
 
