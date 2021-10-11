@@ -87,19 +87,43 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
-        caseNumber.setText(person.getCaseNumber().value);
+        caseNumber.setText(String.format("#%1$6s", person.getCaseNumber().value).replace(' ', '0'));
         homeAddress.setText(person.getHomeAddress().value);
-        workAddress.setText(person.getWorkAddress().map(Object::toString).orElse(""));
-        quarantineAddress.setText(person.getQuarantineAddress().map(Object::toString).orElse(""));
-        shnPeriod.setText(person.getShnPeriod().map(Object::toString).orElse(""));
-        nextOfKinName.setText(person.getNextOfKinName().map(Object::toString).orElse(""));
-        nextOfKinPhone.setText(person.getNextOfKinPhone().map(Object::toString).orElse(""));
-        nextOfKinAddress.setText(person.getNextOfKinAddress().map(Object::toString).orElse(""));
+
+        person.getWorkAddress().map(Object::toString).ifPresentOrElse(
+                text -> workAddress.setText(text),
+                () -> hideNode(workAddressHBox));
+
+        person.getQuarantineAddress().map(Object::toString).ifPresentOrElse(
+                text -> quarantineAddress.setText(text),
+                () -> hideNode(quarantineAddressHBox));
+
+        person.getShnPeriod().map(Object::toString).ifPresentOrElse(
+                text -> shnPeriod.setText(text),
+                () -> hideNode(shnPeriodHBox));
+
+        person.getNextOfKinName().map(Object::toString).ifPresentOrElse(
+                text -> nextOfKinName.setText(text),
+                () -> hideNode(nextOfKinNameHBox));
+
+        person.getNextOfKinPhone().map(Object::toString).ifPresentOrElse(
+                text -> nextOfKinPhone.setText(text),
+                () -> hideNode(nextOfKinPhoneHBox));
+
+        person.getNextOfKinAddress().map(Object::toString).ifPresentOrElse(
+                text -> nextOfKinAddress.setText(text),
+                () -> hideNode(nextOfKinAddressHBox));
+
+        if (!person.getNextOfKinName().isPresent() &&
+                !person.getNextOfKinAddress().isPresent() &&
+                !person.getNextOfKinAddress().isPresent()) {
+            hideNode(nextOfKinBlock);
+        }
     }
 
     /**
      * Removes the specified {@code Node} from display.
-     * @param node The {@code Node} to hide from display.
+     * @param node The {@code Node} to be hidden from display.
      */
     private void hideNode(Node node) {
         node.setManaged(false);

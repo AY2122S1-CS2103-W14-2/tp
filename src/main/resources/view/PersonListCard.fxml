@@ -28,11 +28,11 @@
           </minWidth>
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
-        <Region HBox.hgrow="ALWAYS"/>
-        <Label fx:id="caseNumber" text="#placeholder" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Label fx:id="caseNumber"/>
       </HBox>
       <HBox HBox.hgrow="ALWAYS">
-        <VBox id="personalParticularsBlock" minWidth="300" HBox.hgrow="ALWAYS">
+        <VBox id="personalParticularsBlock" minWidth="290" HBox.hgrow="ALWAYS">
           <Label fx:id="personalParticulars" text="Personal Particulars" />
 
           <HBox fx:id="phoneHBox" alignment="CENTER_LEFT">
@@ -120,7 +120,7 @@
           </HBox>
         </VBox>
 
-        <VBox fx:id="nextOfKinBlock" minWidth="300" HBox.hgrow="ALWAYS">
+        <VBox fx:id="nextOfKinBlock" minWidth="290" HBox.hgrow="ALWAYS">
           <Label id="nokParticulars" text="Next-Of-Kin Particulars" />
 
           <HBox fx:id="nextOfKinNameHBox" alignment="CENTER_LEFT">
