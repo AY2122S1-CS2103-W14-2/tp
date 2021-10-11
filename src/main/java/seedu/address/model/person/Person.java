@@ -2,13 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
-
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
@@ -30,9 +25,6 @@ public class Person {
     private final Optional<Name> nextOfKinName;
     private final Optional<Phone> nextOfKinPhone;
     private final Optional<Address> nextOfKinAddress;
-    // TODO: To remove when integrating changes to Add command.
-    @Deprecated
-    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Constructor for Person.
@@ -41,10 +33,9 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, CaseNumber caseNumber, Address homeAddress,
                   Optional<Address> workAddress, Optional<Address> quarantineAddress, Optional<ShnPeriod> shnPeriod,
-                  Optional<Name> nextOfKinName, Optional<Phone> nextOfKinPhone, Optional<Address> nextOfKinAddress,
-                  Set<Tag> tags) {
+                  Optional<Name> nextOfKinName, Optional<Phone> nextOfKinPhone, Optional<Address> nextOfKinAddress) {
         requireAllNonNull(name, phone, email, caseNumber, homeAddress, workAddress, quarantineAddress,
-                shnPeriod, nextOfKinName, nextOfKinPhone, nextOfKinAddress, tags);
+                shnPeriod, nextOfKinName, nextOfKinPhone, nextOfKinAddress);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -56,15 +47,14 @@ public class Person {
         this.nextOfKinName = nextOfKinName;
         this.nextOfKinPhone = nextOfKinPhone;
         this.nextOfKinAddress = nextOfKinAddress;
-        this.tags.addAll(tags);
     }
 
     /**
      * Short constructor for Person with no optional attributes.
      */
-    public Person(Name name, Phone phone, Email email, CaseNumber caseNumber, Address homeAddress, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, CaseNumber caseNumber, Address homeAddress) {
         this(name, phone, email, caseNumber, homeAddress, Optional.empty(), Optional.empty(), Optional.empty(),
-                Optional.empty(), Optional.empty(), Optional.empty(), tags);
+                Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     public Name getName() {
@@ -112,16 +102,6 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     *
-     * @Deprecated
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
-    }
-
-    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -158,15 +138,14 @@ public class Person {
                 && otherPerson.getShnPeriod().equals(getShnPeriod())
                 && otherPerson.getNextOfKinName().equals(getNextOfKinName())
                 && otherPerson.getNextOfKinPhone().equals(getNextOfKinPhone())
-                && otherPerson.getNextOfKinAddress().equals(getNextOfKinAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getNextOfKinAddress().equals(getNextOfKinAddress());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, caseNumber, homeAddress, workAddress, quarantineAddress, shnPeriod,
-            nextOfKinName, nextOfKinPhone, nextOfKinAddress, tags);
+            nextOfKinName, nextOfKinPhone, nextOfKinAddress);
     }
 
     @Override
@@ -193,12 +172,6 @@ public class Person {
                 .append(getNextOfKinPhone())
                 .append("; Next of Kin Address: ")
                 .append(getNextOfKinAddress());
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
         return builder.toString();
     }
 

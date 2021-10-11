@@ -1,11 +1,6 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,7 +13,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ShnPeriod;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -38,17 +32,6 @@ class JsonAdaptedPerson {
     private final String nextOfKinName;
     private final String nextOfKinPhone;
     private final String nextOfKinAddress;
-    @Deprecated
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-
-    /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
-     */
-    @Deprecated
-    public JsonAdaptedPerson(String name, String phone, String email, String caseNumber, String homeAddress,
-                             List<JsonAdaptedTag> tagged) {
-        this(name, phone, email, caseNumber, homeAddress, null, null, null, null, null, null, tagged);
-    }
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -62,8 +45,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("shnPeriod") String shnPeriod,
                              @JsonProperty("nextOfKinName") String nextOfKinName,
                              @JsonProperty("nextOfKinPhone") String nextOfKinPhone,
-                             @JsonProperty("nextOfKinAddress") String nextOfKinAddress,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("nextOfKinAddress") String nextOfKinAddress) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -75,9 +57,6 @@ class JsonAdaptedPerson {
         this.nextOfKinName = nextOfKinName;
         this.nextOfKinPhone = nextOfKinPhone;
         this.nextOfKinAddress = nextOfKinAddress;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
     }
 
     /**
@@ -95,9 +74,6 @@ class JsonAdaptedPerson {
         nextOfKinName = source.getNextOfKinName().map(Object::toString).orElse(null);
         nextOfKinPhone = source.getNextOfKinPhone().map(Object::toString).orElse(null);
         nextOfKinAddress = source.getNextOfKinAddress().map(Object::toString).orElse(null);
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
     }
 
     /**
@@ -106,11 +82,6 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
-        }
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -182,11 +153,8 @@ class JsonAdaptedPerson {
         }
         final Optional<Address> modelNextOfKinAddress = Optional.ofNullable(nextOfKinAddress).map(Address::new);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-
         return new Person(modelName, modelPhone, modelEmail, modelCaseNumber, modelHomeAddress, modelWorkAddress,
-                modelQuarantineAddress, modelShnPeriod, modelNextOfKinName, modelNextOfKinPhone, modelNextOfKinAddress,
-                modelTags);
+                modelQuarantineAddress, modelShnPeriod, modelNextOfKinName, modelNextOfKinPhone, modelNextOfKinAddress);
     }
 
 }

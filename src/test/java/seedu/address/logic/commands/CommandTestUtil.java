@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOME_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -37,8 +36,6 @@ public class CommandTestUtil {
     public static final String VALID_CASE_NUMBER_BOB = "2";
     public static final String VALID_HOME_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_HOME_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -50,8 +47,6 @@ public class CommandTestUtil {
     public static final String CASE_NUMBER_DESC_BOB = " " + PREFIX_CASE_NUMBER + VALID_CASE_NUMBER_BOB;
     public static final String HOME_ADDRESS_DESC_AMY = " " + PREFIX_HOME_ADDRESS + VALID_HOME_ADDRESS_AMY;
     public static final String HOME_ADDRESS_DESC_BOB = " " + PREFIX_HOME_ADDRESS + VALID_HOME_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -59,7 +54,6 @@ public class CommandTestUtil {
     public static final String INVALID_CASE_NUMBER_DESC = " " + PREFIX_CASE_NUMBER + "-1"; // negative not allowed
     // empty string not allowed for addresses
     public static final String INVALID_HOME_ADDRESS_DESC = " " + PREFIX_HOME_ADDRESS;
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -70,10 +64,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withCaseNumber(VALID_CASE_NUMBER_AMY)
-                .withHomeAddress(VALID_HOME_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withHomeAddress(VALID_HOME_ADDRESS_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withCaseNumber(VALID_CASE_NUMBER_BOB)
-                .withHomeAddress(VALID_HOME_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withHomeAddress(VALID_HOME_ADDRESS_BOB).build();
     }
 
     /**

@@ -5,49 +5,48 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "caseNumber" : "5",
-    "homeAddress" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "homeAddress" : "123, Jurong West Ave 6, #08-111"
   }, {
-    "name" : "Benson Meier",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "caseNumber" : "6",
-    "homeAddress" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "name": "Benson Meier",
+    "phone": "98765432",
+    "email": "johnd@example.com",
+    "caseNumber": "6",
+    "homeAddress": "311, Clementi Ave 2, #02-25",
+    "workAddress": "29 Flora Rd #01-08",
+    "quarantineAddress": "3 Temasek Boulevard #03-028C",
+    "shnPeriod": "2020-04-13 => 2020-04-27",
+    "nextOfKinName": "John Green",
+    "nextOfKinPhone": "84515153",
+    "nextOfKinAddress": "120 Hillview Avenue #06-02"
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "caseNumber" : "7",
-    "homeAddress" : "wall street",
-    "tagged" : [ ]
+    "homeAddress" : "wall street"
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "caseNumber" : "8",
-    "homeAddress" : "10th street",
-    "tagged" : [ "friends" ]
+    "homeAddress" : "10th street"
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "caseNumber" : "9",
-    "homeAddress" : "michegan ave",
-    "tagged" : [ ]
+    "homeAddress" : "michegan ave"
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "caseNumber" : "10",
-    "homeAddress" : "little tokyo",
-    "tagged" : [ ]
+    "homeAddress" : "little tokyo"
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "caseNumber" : "11",
-    "homeAddress" : "4th street",
-    "tagged" : [ ]
+    "homeAddress" : "4th street"
   } ]
 }

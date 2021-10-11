@@ -17,7 +17,4 @@ public class CliSyntax {
     public static final Prefix PREFIX_NEXT_OF_KIN_NAME = new Prefix("kn/");
     public static final Prefix PREFIX_NEXT_OF_KIN_PHONE = new Prefix("kp/");
     public static final Prefix PREFIX_NEXT_OF_KIN_ADDRESS = new Prefix("ka/");
-    // TODO: Remove tag prefix when integrating changes to Add command.
-    @Deprecated
-    public static final Prefix PREFIX_TAG = new Prefix("t/");
 }

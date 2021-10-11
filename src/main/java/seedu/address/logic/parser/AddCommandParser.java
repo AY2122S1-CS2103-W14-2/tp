@@ -11,11 +11,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXT_OF_KIN_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUARANTINE_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SHN_PERIOD;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WORK_ADDRESS;
 
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
@@ -27,7 +25,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ShnPeriod;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -42,8 +39,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_CASE_NUMBER, PREFIX_HOME_ADDRESS, PREFIX_WORK_ADDRESS, PREFIX_QUARANTINE_ADDRESS,
-                PREFIX_SHN_PERIOD, PREFIX_NEXT_OF_KIN_NAME, PREFIX_NEXT_OF_KIN_PHONE, PREFIX_NEXT_OF_KIN_ADDRESS,
-                PREFIX_TAG);
+                PREFIX_SHN_PERIOD, PREFIX_NEXT_OF_KIN_NAME, PREFIX_NEXT_OF_KIN_PHONE, PREFIX_NEXT_OF_KIN_ADDRESS);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_CASE_NUMBER,
                 PREFIX_HOME_ADDRESS) || !argMultimap.getPreamble().isEmpty()) {
@@ -86,11 +82,8 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ? Optional.empty()
                 : Optional.of(ParserUtil.parseAddress(nextOfKinAddressOptional.get()));
 
-        // TODO: To be removed after integrating changes into Add command.
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
         Person person = new Person(name, phone, email, caseNumber, homeAddress, workAddress, quarantineAddress,
-                shnPeriod, nextOfKinName, nextOfKinPhone, nextOfKinAddress, tagList);
+                shnPeriod, nextOfKinName, nextOfKinPhone, nextOfKinAddress);
 
         return new AddCommand(person);
     }
