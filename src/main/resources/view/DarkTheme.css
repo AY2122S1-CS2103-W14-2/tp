@@ -98,17 +98,18 @@
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
     -fx-background-color: rgb(141, 141, 141, 0.2);
-    -fx-border-color: transparent transparent white transparent;
 }
 
 .list-cell:filled:even {
     /* -fx-background-color: #3c3e3f; */
     -fx-background-color: rgb(141, 141, 141, 0.2);
+    -fx-border-color: transparent transparent white transparent;
 }
 
 .list-cell:filled:odd {
     /* -fx-background-color: #515658; */
     -fx-background-color: rgb(141, 141, 141, 0.2);
+    -fx-border-color: transparent transparent white transparent;
 }
 
 .list-cell:filled:selected {
