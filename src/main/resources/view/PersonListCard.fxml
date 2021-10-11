@@ -60,7 +60,7 @@
               </image>
             </ImageView>
             <Region minWidth="5" HBox.hgrow="NEVER"/>
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+            <Label fx:id="homeAddress" styleClass="cell_small_label" text="\$address" />
           </HBox>
 
           <HBox fx:id="emailHBox" alignment="CENTER_LEFT">
@@ -88,10 +88,10 @@
               </image>
             </ImageView>
             <Region minWidth="5" HBox.hgrow="NEVER"/>
-            <Label styleClass="cell_small_label" text="\@placeholder" />
+            <Label fx:id="workAddress" styleClass="cell_small_label" text="\@placeholder" />
           </HBox>
 
-          <HBox fx:id="shnAddressHBox" alignment="CENTER_LEFT">
+          <HBox fx:id="quarantineAddressHBox" alignment="CENTER_LEFT">
             <ImageView
                     fitHeight="10.0"
                     fitWidth="10.0"
@@ -102,7 +102,7 @@
               </image>
             </ImageView>
             <Region minWidth="5" HBox.hgrow="NEVER"/>
-            <Label styleClass="cell_small_label" text="\@placeholder" />
+            <Label fx:id="quarantineAddress" styleClass="cell_small_label" text="\@placeholder" />
           </HBox>
 
           <HBox fx:id="shnPeriodHBox" alignment="CENTER_LEFT">
@@ -116,7 +116,7 @@
               </image>
             </ImageView>
             <Region minWidth="5" HBox.hgrow="NEVER"/>
-            <Label styleClass="cell_small_label" text="\@placeholder" />
+            <Label fx:id="shnPeriod" styleClass="cell_small_label" text="\@placeholder" />
           </HBox>
         </VBox>
 

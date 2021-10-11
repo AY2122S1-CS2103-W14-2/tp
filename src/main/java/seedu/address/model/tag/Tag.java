@@ -6,6 +6,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
+ *
+ * @Deprecated
  */
 public class Tag {
 

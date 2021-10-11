@@ -8,6 +8,8 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Tag}.
+ *
+ * @Deprecated
  */
 class JsonAdaptedTag {
 

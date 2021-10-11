@@ -37,11 +37,23 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
-    @FXML
     private Label email;
     @FXML
     private Label caseNumber;
+    @FXML
+    private Label homeAddress;
+    @FXML
+    private Label workAddress;
+    @FXML
+    private Label quarantineAddress;
+    @FXML
+    private Label shnPeriod;
+    @FXML
+    private Label nextOfKinName;
+    @FXML
+    private Label nextOfKinPhone;
+    @FXML
+    private Label nextOfKinAddress;
     @FXML
     private FlowPane tags;
     @FXML
@@ -53,17 +65,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox workAddressHBox;
     @FXML
-    private HBox shnAddressHBox;
+    private HBox quarantineAddressHBox;
     @FXML
     private HBox shnPeriodHBox;
     @FXML
     private VBox nextOfKinBlock;
-    @FXML
-    private Label nextOfKinName;
-    @FXML
-    private Label nextOfKinPhone;
-    @FXML
-    private Label nextOfKinAddress;
     @FXML
     private HBox nextOfKinNameHBox;
     @FXML
@@ -80,12 +86,15 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        tags = new FlowPane();
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        caseNumber.setText(person.getCaseNumber().value);
+        homeAddress.setText(person.getHomeAddress().value);
+        workAddress.setText(person.getWorkAddress().map(Object::toString).orElse(""));
+        quarantineAddress.setText(person.getQuarantineAddress().map(Object::toString).orElse(""));
+        shnPeriod.setText(person.getShnPeriod().map(Object::toString).orElse(""));
+        nextOfKinName.setText(person.getNextOfKinName().map(Object::toString).orElse(""));
+        nextOfKinPhone.setText(person.getNextOfKinPhone().map(Object::toString).orElse(""));
+        nextOfKinAddress.setText(person.getNextOfKinAddress().map(Object::toString).orElse(""));
     }
 
     /**

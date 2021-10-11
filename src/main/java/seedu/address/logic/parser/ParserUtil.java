@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,9 +12,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.CaseNumber;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.ShnPeriod;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -66,6 +70,36 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String email} into an {@code Email}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static Email parseEmail(String email) throws ParseException {
+        requireNonNull(email);
+        String trimmedEmail = email.trim();
+        if (!Email.isValidEmail(trimmedEmail)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+        return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String caseNumber} into a {@code CaseNumber}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code caseNumber} is invalid.
+     */
+    public static CaseNumber parseCaseNumber(String caseNumber) throws ParseException {
+        requireNonNull(caseNumber);
+        String trimmedCaseNumber = caseNumber.trim();
+        if (!CaseNumber.isValidCaseNumber(trimmedCaseNumber)) {
+            throw new ParseException(CaseNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new CaseNumber(trimmedCaseNumber);
+    }
+
+    /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -81,18 +115,34 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses {@code String SHN period} into an {@code ShnPeriod}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code SHN period} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static ShnPeriod parseShnPeriod(String shnPeriod) throws ParseException {
+        requireNonNull(shnPeriod);
+        String trimmedShnPeriod = shnPeriod.trim();
+        String[] dates = trimmedShnPeriod.split(" ", 2);
+
+        if (dates.length < 2) {
+            throw new ParseException(ShnPeriod.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+
+        LocalDate startDate;
+        LocalDate endDate;
+
+        try {
+            startDate = LocalDate.parse(dates[0]);
+            endDate = LocalDate.parse(dates[1]);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(ShnPeriod.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!ShnPeriod.isValidShnPeriod(startDate, endDate)) {
+            throw new ParseException(ShnPeriod.MESSAGE_CONSTRAINTS);
+        }
+        return new ShnPeriod(startDate, endDate);
     }
 
     /**

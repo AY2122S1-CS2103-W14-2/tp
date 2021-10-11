@@ -3,6 +3,7 @@
     "name": "Hans Muster",
     "phone": "9482424",
     "email": "invalid@email!3e",
-    "address": "4th street"
+    "caseNumber": "-2",
+    "homeAddress": "4th street"
   } ]
 }

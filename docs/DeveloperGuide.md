@@ -255,58 +255,158 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: contact tracing personnel at MOH
 
-* has a need to manage a significant number of contacts
+* has a need to maintain a lot of contact information
 * prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* prefer CLI over GUI
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**: The app will manage up to a few thousand contacts, providing basic features for contact tracing personnel to organise and search through them by personal information (limited to English names and Singaporean contact numbers and addresses), case contacts and quarantine period information.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                  | I want to …​                   | So that I can…​                                                         |
+| -------- | ---------------------------------------- | ------------------------------ | ----------------------------------------------------------------------- |
+| `* * *`  | new user                                 | see usage instructions         | refer to instructions when I forget how to use the app                  |
+| `* * *`  | user                                     | update contacts’ contact details without re-adding that contact | avoid re-entering existing data        |
+| `* * *`  | user                                     | find a person by name          | locate details of persons without having to go through the entire list  |
+| `* * *`  | user                                     | save my contacts               | keep track of their details between sessions                            |
+| `* *`    | experienced user                         | directly adjust my save files  | bypass the CLI for simple bulk tasks                                    |
+| `* * *`  | user                                     | add my contact’s next-of-kin’s information | contact the patient’s next-of-kin should an emergency arise |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Track2Gather` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Access help page**
 
-**MSS**
+**MSS:**
+
+1.  User requests for help
+2.  Track2Gather shows a message with the user guide
+3.  User accesses the user guide
+4.  User closes the message
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User closes the message
+    
+    Use case ends.
+
+
+**Use case: UC02 -  Edit details of an existing contact**
+
+**MSS:**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+2.  Track2Gather shows a list of persons
+3.  User requests to edit the details of a specific person in the list
+4.  Track2Gather edits the person
 
     Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
-
-  Use case ends.
-
+    
+    Use case ends.
 * 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
+  * 3a1. Track2Gather shows an error message.
+      
       Use case resumes at step 2.
+* 3b. The given fields to edit are invalid.
+  * 3b1. Track2Gather shows an error message.
+      
+      Use case resumes at step 2.
+
+
+**Use case: UC03 - Search contacts by name**
+
+**MSS:**
+
+1. User requests to list persons
+2. Track2Gather shows a list of persons
+3. User requests to find a person by name
+4. Track2Gather shows the person with the given name
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+    
+    Use case ends.
+* 3a. The given search keyword is invalid.
+  * 3a1. Track2Gather shows an error message.
+    
+    Use case resumes at step 2.
+
+
+**Use case: UC04 - Add a new contact**
+
+**MSS:**
+
+1. User chooses to add a new contact
+2. Track2Gather requests for details of contact
+3. User enters the requested details.
+4. Track2Gather creates and shows the new contact with given details
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. User details were given in the wrong format.
+  * 3a1. Track2Gather shows the correct format for adding contacts.
+    
+    Use case resumes from step 2.
+
+**Use case: UC05 - Delete a contact**
+
+**MSS:**
+
+1. User chooses to delete a contact.
+2.	Track2Gather shows a list of persons.
+3.	Track2Gather requests the user to specify the person to be deleted.
+4.	User chooses a specific person in the list.
+5.	Track2Gather deletes the person.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+    
+    Use case ends.
+* 4a. The given index is invalid.
+  * 4a1. Track2Gather shows an error message.
+        
+    Use case resumes from step 2.
+
+**Use case: UC06 - Clear all contacts**
+
+**MSS:**
+
+1. User chooses to clear all contacts.
+2.	Track2Gather warns user that all contacts will be deleted.
+3.	User chooses to proceed.
+4.	Track2Gather clears all contacts.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User chooses not to proceed with clearing all contacts.
+    
+    Use case ends.
+
 
 *{More to be added}*
 
@@ -316,12 +416,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
+
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Graphical User Interface (GUI)**: Type of user interface through which users interact with electronic devices via visual indicator representations
+* **Command Line Interface (CLI)**: Type of user interface through which users interact with a system or application by typing in text (commands)
+* **Stay Home Notice (SHN)**: The notice involves a stipulated period consisting of a start and end date a person would have to remain in their place of residence or dedicated facility.
 
 --------------------------------------------------------------------------------------------------------------------
 
