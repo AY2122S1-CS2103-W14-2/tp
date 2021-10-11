@@ -122,6 +122,20 @@ public class PersonCard extends UiPart<Region> {
         node.setVisible(false);
     }
 
+    public HBox getWorkAddressHBox() { return workAddressHBox; }
+
+    public HBox getQuarantineAddressHBox() { return quarantineAddressHBox; }
+
+    public HBox getShnPeriodHBox() { return shnPeriodHBox; }
+
+    public HBox getNextOfKinNameHBox() { return nextOfKinNameHBox; }
+
+    public HBox getNextOfKinPhoneHBox() { return nextOfKinPhoneHBox; }
+
+    public HBox getNextOfKinAddressHBox() { return nextOfKinAddressHBox; }
+
+    public VBox getNextOfKinBlock() { return nextOfKinBlock; }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
