@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -91,32 +89,26 @@ public class PersonCard extends UiPart<Region> {
         homeAddress.setText(person.getHomeAddress().value);
 
         person.getWorkAddress().map(Object::toString).ifPresentOrElse(
-                text -> workAddress.setText(text),
-                () -> hideNode(workAddressHBox));
+            text -> workAddress.setText(text), () -> hideNode(workAddressHBox));
 
         person.getQuarantineAddress().map(Object::toString).ifPresentOrElse(
-                text -> quarantineAddress.setText(text),
-                () -> hideNode(quarantineAddressHBox));
+            text -> quarantineAddress.setText(text), () -> hideNode(quarantineAddressHBox));
 
         person.getShnPeriod().map(Object::toString).ifPresentOrElse(
-                text -> shnPeriod.setText(text),
-                () -> hideNode(shnPeriodHBox));
+            text -> shnPeriod.setText(text), () -> hideNode(shnPeriodHBox));
 
         person.getNextOfKinName().map(Object::toString).ifPresentOrElse(
-                text -> nextOfKinName.setText(text),
-                () -> hideNode(nextOfKinNameHBox));
+            text -> nextOfKinName.setText(text), () -> hideNode(nextOfKinNameHBox));
 
         person.getNextOfKinPhone().map(Object::toString).ifPresentOrElse(
-                text -> nextOfKinPhone.setText(text),
-                () -> hideNode(nextOfKinPhoneHBox));
+            text -> nextOfKinPhone.setText(text), () -> hideNode(nextOfKinPhoneHBox));
 
         person.getNextOfKinAddress().map(Object::toString).ifPresentOrElse(
-                text -> nextOfKinAddress.setText(text),
-                () -> hideNode(nextOfKinAddressHBox));
+            text -> nextOfKinAddress.setText(text), () -> hideNode(nextOfKinAddressHBox));
 
-        if (!person.getNextOfKinName().isPresent() &&
-                !person.getNextOfKinAddress().isPresent() &&
-                !person.getNextOfKinAddress().isPresent()) {
+        if (!person.getNextOfKinName().isPresent()
+                && !person.getNextOfKinAddress().isPresent()
+                && !person.getNextOfKinAddress().isPresent()) {
             hideNode(nextOfKinBlock);
         }
     }
