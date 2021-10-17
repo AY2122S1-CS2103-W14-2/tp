@@ -6,7 +6,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CASE_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOME_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXT_OF_KIN_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXT_OF_KIN_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXT_OF_KIN_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUARANTINE_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SHN_PERIOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WORK_ADDRESS;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
@@ -26,7 +32,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_CASE_NUMBER, PREFIX_HOME_ADDRESS);
+                PREFIX_CASE_NUMBER, PREFIX_HOME_ADDRESS, PREFIX_WORK_ADDRESS, PREFIX_QUARANTINE_ADDRESS,
+                PREFIX_SHN_PERIOD, PREFIX_NEXT_OF_KIN_NAME, PREFIX_NEXT_OF_KIN_PHONE, PREFIX_NEXT_OF_KIN_ADDRESS);
 
         Index index;
 
@@ -53,6 +60,30 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_HOME_ADDRESS).isPresent()) {
             editPersonDescriptor.setHomeAddress(ParserUtil.parseAddress(
                     argMultimap.getValue(PREFIX_HOME_ADDRESS).get()));
+        }
+        if (argMultimap.getValue(PREFIX_WORK_ADDRESS).isPresent()) {
+            editPersonDescriptor.setWorkAddress(ParserUtil.parseAddress(
+                    argMultimap.getValue(PREFIX_WORK_ADDRESS).get()));
+        }
+        if (argMultimap.getValue(PREFIX_QUARANTINE_ADDRESS).isPresent()) {
+            editPersonDescriptor.setQuarantineAddress(ParserUtil.parseAddress(
+                    argMultimap.getValue(PREFIX_QUARANTINE_ADDRESS).get()));
+        }
+        if (argMultimap.getValue(PREFIX_SHN_PERIOD).isPresent()) {
+            editPersonDescriptor.setShnPeriod(ParserUtil.parseShnPeriod(
+                    argMultimap.getValue(PREFIX_SHN_PERIOD).get()));
+        }
+        if (argMultimap.getValue(PREFIX_NEXT_OF_KIN_NAME).isPresent()) {
+            editPersonDescriptor.setNextOfKinName(ParserUtil.parseName(
+                    argMultimap.getValue(PREFIX_NEXT_OF_KIN_NAME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_NEXT_OF_KIN_PHONE).isPresent()) {
+            editPersonDescriptor.setNextOfKinPhone(ParserUtil.parsePhone(
+                    argMultimap.getValue(PREFIX_NEXT_OF_KIN_PHONE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_NEXT_OF_KIN_ADDRESS).isPresent()) {
+            editPersonDescriptor.setNextOfKinAddress(ParserUtil.parseAddress(
+                    argMultimap.getValue(PREFIX_NEXT_OF_KIN_ADDRESS).get()));
         }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {

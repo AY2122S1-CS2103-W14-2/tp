@@ -22,6 +22,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.ShnPeriod;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -95,8 +96,32 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         CaseNumber updatedCaseNumber = editPersonDescriptor.getCaseNumber().orElse(personToEdit.getCaseNumber());
         Address updatedHomeAddress = editPersonDescriptor.getHomeAddress().orElse(personToEdit.getHomeAddress());
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedCaseNumber, updatedHomeAddress);
+        Optional<Address> workAddress = editPersonDescriptor.getWorkAddress();
+        if (workAddress.isEmpty()) {
+            workAddress = personToEdit.getWorkAddress();
+        }
+        Optional<Address> quarantineAddress = editPersonDescriptor.getQuarantineAddress();
+        if (quarantineAddress.isEmpty()) {
+            quarantineAddress = personToEdit.getQuarantineAddress();
+        }
+        Optional<ShnPeriod> shnPeriod = editPersonDescriptor.getShnPeriod();
+        if (shnPeriod.isEmpty()) {
+            shnPeriod = personToEdit.getShnPeriod();
+        }
+        Optional<Name> nextOfKinName = editPersonDescriptor.getNextOfKinName();
+        if (nextOfKinName.isEmpty()) {
+            nextOfKinName = personToEdit.getNextOfKinName();
+        }
+        Optional<Phone> nextOfKinPhone = editPersonDescriptor.getNextOfKinPhone();
+        if (nextOfKinPhone.isEmpty()) {
+            nextOfKinPhone = personToEdit.getNextOfKinPhone();
+        }
+        Optional<Address> nextOfKinAddress = editPersonDescriptor.getNextOfKinAddress();
+        if (nextOfKinAddress.isEmpty()) {
+            nextOfKinAddress = personToEdit.getNextOfKinAddress();
+        }
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedCaseNumber, updatedHomeAddress,
+                workAddress, quarantineAddress, shnPeriod, nextOfKinName, nextOfKinPhone, nextOfKinAddress);
     }
 
     @Override
@@ -127,6 +152,12 @@ public class EditCommand extends Command {
         private Email email;
         private CaseNumber caseNumber;
         private Address homeAddress;
+        private Address workAddress;
+        private Address quarantineAddress;
+        private ShnPeriod shnPeriod;
+        private Name nextOfKinName;
+        private Phone nextOfKinPhone;
+        private Address nextOfKinAddress;
 
         public EditPersonDescriptor() {}
 
@@ -139,13 +170,20 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setCaseNumber(toCopy.caseNumber);
             setHomeAddress(toCopy.homeAddress);
+            setWorkAddress(toCopy.workAddress);
+            setQuarantineAddress(toCopy.quarantineAddress);
+            setShnPeriod(toCopy.shnPeriod);
+            setNextOfKinName(toCopy.nextOfKinName);
+            setNextOfKinPhone(toCopy.nextOfKinPhone);
+            setNextOfKinAddress(toCopy.nextOfKinAddress);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, caseNumber, homeAddress);
+            return CollectionUtil.isAnyNonNull(name, phone, email, caseNumber, homeAddress,
+                    workAddress, quarantineAddress, shnPeriod, nextOfKinName, nextOfKinPhone, nextOfKinAddress);
         }
 
         public void setName(Name name) {
@@ -188,6 +226,54 @@ public class EditCommand extends Command {
             return Optional.ofNullable(homeAddress);
         }
 
+        public void setWorkAddress(Address workAddress) {
+            this.workAddress = workAddress;
+        }
+
+        public Optional<Address> getWorkAddress() {
+            return Optional.ofNullable(workAddress);
+        }
+
+        public void setQuarantineAddress(Address quarantineAddress) {
+            this.quarantineAddress = quarantineAddress;
+        }
+
+        public Optional<Address> getQuarantineAddress() {
+            return Optional.ofNullable(quarantineAddress);
+        }
+
+        public void setShnPeriod(ShnPeriod shnPeriod) {
+            this.shnPeriod = shnPeriod;
+        }
+
+        public Optional<ShnPeriod> getShnPeriod() {
+            return Optional.ofNullable(shnPeriod);
+        }
+
+        public void setNextOfKinName(Name nextOfKinName) {
+            this.nextOfKinName = nextOfKinName;
+        }
+
+        public Optional<Name> getNextOfKinName() {
+            return Optional.ofNullable(nextOfKinName);
+        }
+
+        public void setNextOfKinPhone(Phone nextOfKinPhone) {
+            this.nextOfKinPhone = nextOfKinPhone;
+        }
+
+        public Optional<Phone> getNextOfKinPhone() {
+            return Optional.ofNullable(nextOfKinPhone);
+        }
+
+        public void setNextOfKinAddress(Address nextOfKinAddress) {
+            this.nextOfKinAddress = nextOfKinAddress;
+        }
+
+        public Optional<Address> getNextOfKinAddress() {
+            return Optional.ofNullable(nextOfKinAddress);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -207,7 +293,13 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getCaseNumber().equals(e.getCaseNumber())
-                    && getHomeAddress().equals(e.getHomeAddress());
+                    && getHomeAddress().equals(e.getHomeAddress())
+                    && getWorkAddress().equals(e.getWorkAddress())
+                    && getQuarantineAddress().equals(e.getQuarantineAddress())
+                    && getShnPeriod().equals(e.getShnPeriod())
+                    && getNextOfKinName().equals(e.getNextOfKinName())
+                    && getNextOfKinPhone().equals(e.getNextOfKinPhone())
+                    && getNextOfKinAddress().equals(e.getNextOfKinAddress());
         }
     }
 }
