@@ -33,6 +33,12 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setCaseNumber(person.getCaseNumber());
         descriptor.setHomeAddress(person.getHomeAddress());
+        descriptor.setWorkAddress(person.getWorkAddress().orElse(null));
+        descriptor.setQuarantineAddress(person.getQuarantineAddress().orElse(null));
+        descriptor.setShnPeriod(person.getShnPeriod().orElse(null));
+        descriptor.setNextOfKinName(person.getNextOfKinName().orElse(null));
+        descriptor.setNextOfKinPhone(person.getNextOfKinPhone().orElse(null));
+        descriptor.setNextOfKinAddress(person.getNextOfKinAddress().orElse(null));
     }
 
     /**

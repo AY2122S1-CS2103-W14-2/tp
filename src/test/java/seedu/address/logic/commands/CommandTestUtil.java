@@ -6,7 +6,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CASE_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOME_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXT_OF_KIN_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXT_OF_KIN_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXT_OF_KIN_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUARANTINE_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SHN_PERIOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WORK_ADDRESS;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -36,7 +42,20 @@ public class CommandTestUtil {
     public static final String VALID_CASE_NUMBER_BOB = "2";
     public static final String VALID_HOME_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_HOME_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_WORK_ADDRESS_AMY = "Block 312, Amy Work Street 1";
+    public static final String VALID_WORK_ADDRESS_BOB = "Block 123, Bob Work Street 3";
+    public static final String VALID_QUARANTINE_ADDRESS_AMY = "Block 312, Amy Quarantine Street 1";
+    public static final String VALID_QUARANTINE_ADDRESS_BOB = "Block 123, Bob Quarantine Street 3";
+    public static final String VALID_SHN_PERIOD_AMY = "2020-01-01 => 2020-02-02";
+    public static final String VALID_SHN_PERIOD_BOB = "2021-01-01 => 2021-02-02";
+    public static final String VALID_NEXT_OF_KIN_NAME_AMY = "Daniel Eng";
+    public static final String VALID_NEXT_OF_KIN_NAME_BOB = "Frank Goh";
+    public static final String VALID_NEXT_OF_KIN_PHONE_AMY = "88888888";
+    public static final String VALID_NEXT_OF_KIN_PHONE_BOB = "99999999";
+    public static final String VALID_NEXT_OF_KIN_ADDRESS_AMY = "Block 312, Amy NOK Street 1";
+    public static final String VALID_NEXT_OF_KIN_ADDRESS_BOB = "Block 123, Bob NOK Street 3";
 
+    //TODO: Amend shnPeriod so that output = input
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -47,6 +66,24 @@ public class CommandTestUtil {
     public static final String CASE_NUMBER_DESC_BOB = " " + PREFIX_CASE_NUMBER + VALID_CASE_NUMBER_BOB;
     public static final String HOME_ADDRESS_DESC_AMY = " " + PREFIX_HOME_ADDRESS + VALID_HOME_ADDRESS_AMY;
     public static final String HOME_ADDRESS_DESC_BOB = " " + PREFIX_HOME_ADDRESS + VALID_HOME_ADDRESS_BOB;
+    public static final String WORK_ADDRESS_DESC_AMY = " " + PREFIX_WORK_ADDRESS + VALID_WORK_ADDRESS_AMY;
+    public static final String WORK_ADDRESS_DESC_BOB = " " + PREFIX_WORK_ADDRESS + VALID_WORK_ADDRESS_BOB;
+    public static final String QUARANTINE_ADDRESS_DESC_AMY =
+            " " + PREFIX_QUARANTINE_ADDRESS + VALID_QUARANTINE_ADDRESS_AMY;
+    public static final String QUARANTINE_ADDRESS_DESC_BOB =
+            " " + PREFIX_QUARANTINE_ADDRESS + VALID_QUARANTINE_ADDRESS_BOB;
+    public static final String SHN_PERIOD_DESC_AMY = " " + PREFIX_SHN_PERIOD + "2020-01-01 2020-02-02";
+    public static final String SHN_PERIOD_DESC_BOB = " " + PREFIX_SHN_PERIOD + "2021-01-01 2021-02-02";
+    public static final String NEXT_OF_KIN_NAME_DESC_AMY = " " + PREFIX_NEXT_OF_KIN_NAME + VALID_NEXT_OF_KIN_NAME_AMY;
+    public static final String NEXT_OF_KIN_NAME_DESC_BOB = " " + PREFIX_NEXT_OF_KIN_NAME + VALID_NEXT_OF_KIN_NAME_BOB;
+    public static final String NEXT_OF_KIN_PHONE_DESC_AMY =
+            " " + PREFIX_NEXT_OF_KIN_PHONE + VALID_NEXT_OF_KIN_PHONE_AMY;
+    public static final String NEXT_OF_KIN_PHONE_DESC_BOB =
+            " " + PREFIX_NEXT_OF_KIN_PHONE + VALID_NEXT_OF_KIN_PHONE_BOB;
+    public static final String NEXT_OF_KIN_ADDRESS_DESC_AMY =
+            " " + PREFIX_NEXT_OF_KIN_ADDRESS + VALID_NEXT_OF_KIN_ADDRESS_AMY;
+    public static final String NEXT_OF_KIN_ADDRESS_DESC_BOB =
+            " " + PREFIX_NEXT_OF_KIN_ADDRESS + VALID_NEXT_OF_KIN_ADDRESS_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -54,6 +91,15 @@ public class CommandTestUtil {
     public static final String INVALID_CASE_NUMBER_DESC = " " + PREFIX_CASE_NUMBER + "-1"; // negative not allowed
     // empty string not allowed for addresses
     public static final String INVALID_HOME_ADDRESS_DESC = " " + PREFIX_HOME_ADDRESS;
+    public static final String INVALID_WORK_ADDRESS_DESC = " " + PREFIX_WORK_ADDRESS;
+    public static final String INVALID_QUARANTINE_ADDRESS_DESC = " " + PREFIX_QUARANTINE_ADDRESS;
+    // end date earlier than start date not allowed for shn periods
+    public static final String INVALID_SHN_PERIOD = " " + PREFIX_SHN_PERIOD + "2020-02-02 2020-01-01";
+    public static final String INVALID_NEXT_OF_KIN_NAME = " " + PREFIX_NEXT_OF_KIN_NAME + "Frank!"; // '!' not allowed
+    // inputs less than 3 digits not allowed for phones
+    public static final String INVALID_NEXT_OF_KIN_PHONE = " " + PREFIX_NEXT_OF_KIN_PHONE + "23";
+    // first character whitespace not allowed for addresses
+    public static final String INVALID_NEXT_OF_KIN_ADDRESS = " " + PREFIX_NEXT_OF_KIN_ADDRESS + " ";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

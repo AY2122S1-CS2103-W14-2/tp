@@ -1,11 +1,17 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
-    "name" : "Alice Pauline",
-    "phone" : "94351253",
-    "email" : "alice@example.com",
-    "caseNumber" : "5",
-    "homeAddress" : "123, Jurong West Ave 6, #08-111"
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "caseNumber": "5",
+    "homeAddress": "123, Jurong West Ave 6, #08-111",
+    "workAddress": "1 Brooke Rd #B1-11 Katong Plaza",
+    "quarantineAddress": "448 Hougang Ave 10 #B1-529",
+    "shnPeriod": "2020-09-23 => 2020-10-07",
+    "nextOfKinName": "Anthony Reed",
+    "nextOfKinPhone": "92456234",
+    "nextOfKinAddress": "4 Jalan Besut"
   }, {
     "name": "Benson Meier",
     "phone": "98765432",

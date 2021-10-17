@@ -8,8 +8,14 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_HOME_ADDRESS_AM
 import static seedu.address.logic.commands.CommandTestUtil.VALID_HOME_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NEXT_OF_KIN_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NEXT_OF_KIN_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NEXT_OF_KIN_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUARANTINE_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SHN_PERIOD_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WORK_ADDRESS_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,7 +31,9 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline").withPhone("94351253")
             .withEmail("alice@example.com").withCaseNumber("5").withHomeAddress("123, Jurong West Ave 6, #08-111")
-            .build();
+            .withWorkAddress("1 Brooke Rd #B1-11 Katong Plaza").withQuarantineAddress("448 Hougang Ave 10 #B1-529")
+            .withShnPeriod("2020-09-23 => 2020-10-07").withNextOfKinName("Anthony Reed").withNextOfKinPhone("92456234")
+            .withNextOfKinAddress("4 Jalan Besut").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier").withPhone("98765432")
             .withEmail("johnd@example.com").withCaseNumber("6").withHomeAddress("311, Clementi Ave 2, #02-25")
             .withWorkAddress("29 Flora Rd #01-08").withQuarantineAddress("3 Temasek Boulevard #03-028C")
@@ -54,6 +62,9 @@ public class TypicalPersons {
             .build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withCaseNumber(VALID_CASE_NUMBER_BOB).withHomeAddress(VALID_HOME_ADDRESS_BOB)
+            .withWorkAddress(VALID_WORK_ADDRESS_BOB).withQuarantineAddress(VALID_QUARANTINE_ADDRESS_BOB)
+            .withShnPeriod(VALID_SHN_PERIOD_BOB).withNextOfKinName(VALID_NEXT_OF_KIN_NAME_BOB)
+            .withNextOfKinPhone(VALID_NEXT_OF_KIN_PHONE_BOB).withNextOfKinAddress(VALID_NEXT_OF_KIN_ADDRESS_BOB)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

@@ -36,7 +36,11 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = new PersonBuilder().build();
+        Person editedPerson =
+                new PersonBuilder().withWorkAddress("10 Lor Lada Hitam")
+                        .withQuarantineAddress("160 Ang Mo Kio Ave 4#01-105").withShnPeriod("2020-01-01 => 2020-02-02")
+                        .withNextOfKinName("Henry Lau").withNextOfKinPhone("95125234")
+                        .withNextOfKinAddress("50 Bt Batok St 23 #06-21").build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
