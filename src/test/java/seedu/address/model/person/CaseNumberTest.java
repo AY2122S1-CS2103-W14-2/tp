@@ -14,7 +14,7 @@ public class CaseNumberTest {
     }
 
     @Test
-    public void constructor_invalidEmail_throwsIllegalArgumentException() {
+    public void constructor_invalidCaseNumber_throwsIllegalArgumentException() {
         String invalidCaseNumber = "";
         assertThrows(IllegalArgumentException.class, () -> new CaseNumber(invalidCaseNumber));
     }
