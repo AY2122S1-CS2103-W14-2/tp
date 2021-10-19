@@ -25,7 +25,7 @@ public class CaseNumber {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid count.
      */
     public static boolean isValidCaseNumber(String test) {
         return test.matches(VALIDATION_REGEX);
