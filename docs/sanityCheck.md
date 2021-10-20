@@ -5,6 +5,7 @@ you create or modify a feature.
 
 # Table of Contents
 [Person Attributes](#attributes)
+[Features](#features)
 
 <a name="attributes"/>
 ## Person Attributes
@@ -59,3 +60,21 @@ FOR ASSIGNEES AND PR MAKERS: Do not merge the PR unless it has the following pas
 2. Regex parsing and assertions, with a valid MESSAGE_USAGE warning
 3. AddCommandParserTest.java prefix-less test
 4. AddCommandParserTest.java invalid value test
+
+<a name="features"/>
+## Feature standardisation
+We decided to standardise the app as having a single-view. As such, all functionality should operate within the 
+constraints as follows:
+1. All functions need to be CLI-only
+2. To select which person is to be acted upon, we should use the index of the person in the list
+3. Persons relevant to the view should be filtered by applying a predicate on an attribute of Person attribute class.
+
+## Implementing the feature
+### Filtering view
+1. View filters take the form of predicates which should be created in 
+   [Model.java]("../src/main/java/seedu/address/model/Model.java")
+2. Refer to [List Command]("../src/main/java/seedu/address/logic/commands/ListCommand.java") for how to implement
+   the filter
+   
+### Adding the command
+1. 

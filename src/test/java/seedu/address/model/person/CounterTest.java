@@ -14,7 +14,7 @@ public class CounterTest {
     }
 
     @Test
-    public void constructor_invalidEmail_throwsIllegalArgumentException() {
+    public void constructor_invalidCounter_throwsIllegalArgumentException() {
         String invalidCounter = "";
         assertThrows(IllegalArgumentException.class, () -> new Counter(invalidCounter));
     }
@@ -40,6 +40,6 @@ public class CounterTest {
         // valid Counter
         assertTrue(Counter.isValidCounter("123456")); // 6 digit number
         assertTrue(Counter.isValidCounter("1")); // <6 digit number
-        assertTrue(Counter.isValidCounter("0")); // default starting value
+        assertTrue(Counter.isValidCounter("0")); // default counter
     }
 }

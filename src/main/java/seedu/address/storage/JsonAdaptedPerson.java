@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.CaseNumber;
+import seedu.address.model.person.Counter;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -32,6 +33,7 @@ class JsonAdaptedPerson {
     private final String nextOfKinName;
     private final String nextOfKinPhone;
     private final String nextOfKinAddress;
+    private final String counter;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -45,7 +47,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("shnPeriod") String shnPeriod,
                              @JsonProperty("nextOfKinName") String nextOfKinName,
                              @JsonProperty("nextOfKinPhone") String nextOfKinPhone,
-                             @JsonProperty("nextOfKinAddress") String nextOfKinAddress) {
+                             @JsonProperty("nextOfKinAddress") String nextOfKinAddress,
+                             @JsonProperty("counter") String counter) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -57,6 +60,7 @@ class JsonAdaptedPerson {
         this.nextOfKinName = nextOfKinName;
         this.nextOfKinPhone = nextOfKinPhone;
         this.nextOfKinAddress = nextOfKinAddress;
+        this.counter = counter;
     }
 
     /**
@@ -74,6 +78,7 @@ class JsonAdaptedPerson {
         nextOfKinName = source.getNextOfKinName().map(Object::toString).orElse(null);
         nextOfKinPhone = source.getNextOfKinPhone().map(Object::toString).orElse(null);
         nextOfKinAddress = source.getNextOfKinAddress().map(Object::toString).orElse(null);
+        counter = source.getCounter().toString();
     }
 
     /**
@@ -153,8 +158,14 @@ class JsonAdaptedPerson {
         }
         final Optional<Address> modelNextOfKinAddress = Optional.ofNullable(nextOfKinAddress).map(Address::new);
 
+        if (counter != null && !Counter.isValidCounter(counter)) {
+            throw new IllegalValueException(Counter.MESSAGE_CONSTRAINTS);
+        }
+        final Counter modelCounter = new Counter(counter);
+
         return new Person(modelName, modelPhone, modelEmail, modelCaseNumber, modelHomeAddress, modelWorkAddress,
-                modelQuarantineAddress, modelShnPeriod, modelNextOfKinName, modelNextOfKinPhone, modelNextOfKinAddress);
+                          modelQuarantineAddress, modelShnPeriod, modelNextOfKinName, modelNextOfKinPhone,
+                          modelNextOfKinAddress, modelCounter);
     }
 
 }

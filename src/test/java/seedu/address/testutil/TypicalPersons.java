@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CASE_NUMBER_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CASE_NUMBER_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COUNTER_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_HOME_ADDRESS_AMY;
@@ -54,7 +55,7 @@ public class TypicalPersons {
             .build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withCaseNumber(VALID_CASE_NUMBER_BOB).withHomeAddress(VALID_HOME_ADDRESS_BOB)
-            .build();
+            .withCounter(VALID_COUNTER_BOB).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

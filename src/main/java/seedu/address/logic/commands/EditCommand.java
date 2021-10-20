@@ -24,6 +24,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.CaseNumber;
+import seedu.address.model.person.Counter;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -120,9 +121,10 @@ public class EditCommand extends Command {
                 .or(personToEdit::getNextOfKinPhone);
         Optional<Address> updatedNextOfKinAddress = editPersonDescriptor.getNextOfKinAddress()
                 .or(personToEdit::getNextOfKinAddress);
+        Counter updatedCounter = editPersonDescriptor.getCounter().orElse(personToEdit.getCounter());
         return new Person(updatedName, updatedPhone, updatedEmail, updatedCaseNumber, updatedHomeAddress,
                 updatedWorkAddress, updatedQuarantineAddress, updatedShnPeriod, updatedNextOfKinName,
-                updatedNextOfKinPhone, updatedNextOfKinAddress);
+                updatedNextOfKinPhone, updatedNextOfKinAddress, updatedCounter);
     }
 
     @Override
@@ -159,6 +161,7 @@ public class EditCommand extends Command {
         private Name nextOfKinName;
         private Phone nextOfKinPhone;
         private Address nextOfKinAddress;
+        private Counter counter;
 
         public EditPersonDescriptor() {}
 
@@ -177,6 +180,7 @@ public class EditCommand extends Command {
             setNextOfKinName(toCopy.nextOfKinName);
             setNextOfKinPhone(toCopy.nextOfKinPhone);
             setNextOfKinAddress(toCopy.nextOfKinAddress);
+            setCounter(toCopy.counter);
         }
 
         /**
@@ -275,6 +279,10 @@ public class EditCommand extends Command {
             return Optional.ofNullable(nextOfKinAddress);
         }
 
+        public void setCounter(Counter counter) { this.counter = counter; }
+
+        public Optional<Counter> getCounter() {return Optional.ofNullable(this.counter);}
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -300,7 +308,8 @@ public class EditCommand extends Command {
                     && getShnPeriod().equals(e.getShnPeriod())
                     && getNextOfKinName().equals(e.getNextOfKinName())
                     && getNextOfKinPhone().equals(e.getNextOfKinPhone())
-                    && getNextOfKinAddress().equals(e.getNextOfKinAddress());
+                    && getNextOfKinAddress().equals(e.getNextOfKinAddress())
+                    && getCounter().equals(e.getCounter());
         }
     }
 }

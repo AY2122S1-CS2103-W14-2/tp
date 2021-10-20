@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.CaseNumber;
+import seedu.address.model.person.Counter;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -32,6 +33,7 @@ public class PersonBuilder {
     private Optional<Name> nextOfKinName;
     private Optional<Phone> nextOfKinPhone;
     private Optional<Address> nextOfKinAddress;
+    private Counter counter;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -48,6 +50,7 @@ public class PersonBuilder {
         nextOfKinName = Optional.empty();
         nextOfKinPhone = Optional.empty();
         nextOfKinAddress = Optional.empty();
+        counter = new Counter("0");
     }
 
     /**
@@ -65,6 +68,7 @@ public class PersonBuilder {
         nextOfKinName = personToCopy.getNextOfKinName();
         nextOfKinPhone = personToCopy.getNextOfKinPhone();
         nextOfKinAddress = personToCopy.getNextOfKinAddress();
+        counter = personToCopy.getCounter();
     }
 
     /**
@@ -156,13 +160,21 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code counter} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withCounter(String counter) {
+        this.counter = new Counter(counter);
+        return this;
+    }
+
+    /**
      * Creates {@code Person} with attributes corresponding to those set by the builder.
      *
      * @return built custom {@code Person}
      */
     public Person build() {
         return new Person(name, phone, email, caseNumber, homeAddress, workAddress, quarantineAddress,
-                shnPeriod, nextOfKinName, nextOfKinPhone, nextOfKinAddress);
+                shnPeriod, nextOfKinName, nextOfKinPhone, nextOfKinAddress, counter);
     }
 
 }

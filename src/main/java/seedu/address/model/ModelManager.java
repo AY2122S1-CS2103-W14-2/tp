@@ -100,6 +100,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void incrementPerson(Person target) {
+        target.getCounter().increment();
+        updateFilteredPersonList(PREDICATE_SHOW_NON_CALLED);
+    }
+
+    @Override
+    public void callPerson(Person target) {
+        target.getCounter().call();
+        updateFilteredPersonList(PREDICATE_SHOW_NON_CALLED);
+    }
+
+    @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

@@ -19,6 +19,7 @@ public class Person {
     // Data fields
     private final CaseNumber caseNumber;
     private final Address homeAddress;
+    private final Counter counter;
     private final Optional<Address> workAddress;
     private final Optional<Address> quarantineAddress;
     private final Optional<ShnPeriod> shnPeriod;
@@ -33,7 +34,8 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, CaseNumber caseNumber, Address homeAddress,
                   Optional<Address> workAddress, Optional<Address> quarantineAddress, Optional<ShnPeriod> shnPeriod,
-                  Optional<Name> nextOfKinName, Optional<Phone> nextOfKinPhone, Optional<Address> nextOfKinAddress) {
+                  Optional<Name> nextOfKinName, Optional<Phone> nextOfKinPhone, Optional<Address> nextOfKinAddress,
+                  Counter counter) {
         requireAllNonNull(name, phone, email, caseNumber, homeAddress, workAddress, quarantineAddress,
                 shnPeriod, nextOfKinName, nextOfKinPhone, nextOfKinAddress);
         this.name = name;
@@ -47,6 +49,17 @@ public class Person {
         this.nextOfKinName = nextOfKinName;
         this.nextOfKinPhone = nextOfKinPhone;
         this.nextOfKinAddress = nextOfKinAddress;
+        this.counter = counter;
+    }
+
+    /**
+     * Default constructor for Person that uses default starting counter of 0.
+     */
+    public Person(Name name, Phone phone, Email email, CaseNumber caseNumber, Address homeAddress,
+                  Optional<Address> workAddress, Optional<Address> quarantineAddress, Optional<ShnPeriod> shnPeriod,
+                  Optional<Name> nextOfKinName, Optional<Phone> nextOfKinPhone, Optional<Address> nextOfKinAddress) {
+        this(name, phone, email, caseNumber, homeAddress, workAddress, quarantineAddress, shnPeriod,
+            nextOfKinName, nextOfKinPhone, nextOfKinAddress, new Counter("0"));
     }
 
     /**
@@ -101,6 +114,10 @@ public class Person {
         return nextOfKinAddress;
     }
 
+    public Counter getCounter() {
+        return counter;
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -138,14 +155,15 @@ public class Person {
                 && otherPerson.getShnPeriod().equals(getShnPeriod())
                 && otherPerson.getNextOfKinName().equals(getNextOfKinName())
                 && otherPerson.getNextOfKinPhone().equals(getNextOfKinPhone())
-                && otherPerson.getNextOfKinAddress().equals(getNextOfKinAddress());
+                && otherPerson.getNextOfKinAddress().equals(getNextOfKinAddress())
+                && otherPerson.getCounter().equals(getCounter());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, caseNumber, homeAddress, workAddress, quarantineAddress, shnPeriod,
-            nextOfKinName, nextOfKinPhone, nextOfKinAddress);
+            nextOfKinName, nextOfKinPhone, nextOfKinAddress, counter);
     }
 
     @Override
@@ -171,7 +189,9 @@ public class Person {
                 .append("; Next of Kin Phone: ")
                 .append(getNextOfKinPhone())
                 .append("; Next of Kin Address: ")
-                .append(getNextOfKinAddress());
+                .append(getNextOfKinAddress())
+                .append("; Non-Compliance Counter: ")
+                .append(getCounter());
         return builder.toString();
     }
 
