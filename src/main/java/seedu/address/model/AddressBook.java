@@ -56,6 +56,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
     }
 
+    /**
+     * Sets all {@code Person} in {@code AddressBook} as not called.
+     */
+    public void resetCall() {
+        for (Person i: persons) {
+            i.unCall();
+        }
+    }
+
     //// person-level operations
 
     /**

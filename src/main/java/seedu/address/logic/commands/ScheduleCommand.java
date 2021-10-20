@@ -17,7 +17,8 @@ public class ScheduleCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_NON_CALLED);
+        model.resetCall();
+//        model.updateFilteredPersonList(PREDICATE_SHOW_NON_CALLED);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

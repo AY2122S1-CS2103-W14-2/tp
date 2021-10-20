@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Counter {
     public static final String MESSAGE_CONSTRAINTS =
         "Counter should be a non-negative integer without left-padding 0s";
-    public static final String VALIDATION_REGEX = "(^[1-9]+\\d*$)|^0$";
+    public static final String VALIDATION_REGEX = "(^[1-9]+\\d*$)|^0$|((^[1-9]+\\d*)|^0) (true|false)";
     private int value;
     private boolean called;
 
@@ -20,7 +20,7 @@ public class Counter {
      * @param counter A valid counter.
      */
     public Counter(String counter) {
-        this(counter, false);
+        this(counter.split(" ")[0], counter.split(" ")[1]);
     }
 
     /**
@@ -28,11 +28,11 @@ public class Counter {
      *
      * @param counter A valid counter.
      */
-    public Counter(String counter, Boolean called) {
+    public Counter(String counter, String called) {
         requireNonNull(counter);
         checkArgument(isValidCounter(counter), MESSAGE_CONSTRAINTS);
         value = Integer.parseInt(counter);
-        called = true;
+        this.called = Boolean.valueOf(called);
     }
 
     /**
@@ -88,7 +88,7 @@ public class Counter {
 
     @Override
     public String toString() {
-        return String.valueOf(value);
+        return String.valueOf(value) + " " + String.valueOf(called);
     }
 
     @Override

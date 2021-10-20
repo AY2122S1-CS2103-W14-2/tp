@@ -112,6 +112,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void resetCall() {
+        addressBook.resetCall();
+        updateFilteredPersonList(PREDICATE_SHOW_NON_CALLED);
+    }
+
+    @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
