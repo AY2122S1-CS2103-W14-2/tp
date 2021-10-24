@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.CaseNumber;
-import seedu.address.model.person.Counter;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -140,13 +139,13 @@ public class JsonAdaptedPersonTest {
     }
 
     // TODO: Fix test. There's an issue with Name
-//    @Test
-//    public void toModelType_invalidCounter_throwsIllegalValueException() {
-//        System.out.println(VALID_NAME);
-//        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_CASE_NUMBER,
-//            VALID_HOME_ADDRESS, VALID_WORK_ADDRESS, VALID_QUARANTINE_ADDRESS, VALID_SHN_PERIOD,
-//            VALID_NEXT_OF_KIN_NAME, VALID_NEXT_OF_KIN_PHONE, VALID_NEXT_OF_KIN_ADDRESS, INVALID_COUNTER);
-//        String expectedMessage = Counter.MESSAGE_CONSTRAINTS;
-//        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-//    }
+    //    @Test
+    //    public void toModelType_invalidCounter_throwsIllegalValueException() {
+    //        System.out.println(VALID_NAME);
+    //        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_CASE_NUMBER,
+    //            VALID_HOME_ADDRESS, VALID_WORK_ADDRESS, VALID_QUARANTINE_ADDRESS, VALID_SHN_PERIOD,
+    //            VALID_NEXT_OF_KIN_NAME, VALID_NEXT_OF_KIN_PHONE, VALID_NEXT_OF_KIN_ADDRESS, INVALID_COUNTER);
+    //        String expectedMessage = Counter.MESSAGE_CONSTRAINTS;
+    //        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    //    }
 }

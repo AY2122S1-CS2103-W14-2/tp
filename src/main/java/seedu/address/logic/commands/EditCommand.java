@@ -279,9 +279,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(nextOfKinAddress);
         }
 
-        public void setCounter(Counter counter) { this.counter = counter; }
+        public void setCounter(Counter counter) {
+            this.counter = counter;
+        }
 
-        public Optional<Counter> getCounter() {return Optional.ofNullable(this.counter);}
+        public Optional<Counter> getCounter() {
+            return Optional.ofNullable(this.counter);
+        }
 
         @Override
         public boolean equals(Object other) {

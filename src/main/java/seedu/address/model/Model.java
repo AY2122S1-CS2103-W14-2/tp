@@ -71,18 +71,6 @@ public interface Model {
     void addPerson(Person person);
 
     /**
-     * Increments counter of the given person.
-     * {@code person} must exist in the address book.
-     */
-    void incrementPerson(Person person);
-
-    /**
-     * Sets the person as called
-     * {@code person} must exist in the address book.
-     */
-    void callPerson(Person person);
-
-    /**
      * Sets all people as uncalled.
      */
     void resetCall();

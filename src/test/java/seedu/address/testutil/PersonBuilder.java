@@ -50,7 +50,7 @@ public class PersonBuilder {
         nextOfKinName = Optional.empty();
         nextOfKinPhone = Optional.empty();
         nextOfKinAddress = Optional.empty();
-        counter = new Counter("0");
+        counter = new Counter("0 false");
     }
 
     /**

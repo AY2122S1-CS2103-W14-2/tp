@@ -134,7 +134,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void incrementPerson(Person target) {
+        public void resetCall() {
             throw new AssertionError("This method should not be called.");
         }
 

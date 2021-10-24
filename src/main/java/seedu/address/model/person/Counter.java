@@ -1,7 +1,6 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a counter used to record the number of times an event has occurred with respect to parent Person.
@@ -17,22 +16,17 @@ public class Counter {
     /**
      * Default {@code Counter} constructor.
      *
-     * @param counter A valid {@code Counter}.
+     * @param counter Arguments containing number of times person has been called, and optionally if they have
+     *                previously been called.
      */
     public Counter(String counter) {
-        this(counter.split(" ")[0], counter.split(" ")[1]);
-    }
-
-    /**
-     * Constructs a {@code Counter}.
-     *
-     * @param counter A valid {@code Counter}.
-     */
-    public Counter(String counter, String called) {
-        requireNonNull(counter);
-        checkArgument(isValidCounter(counter), MESSAGE_CONSTRAINTS);
-        this.value = Integer.parseInt(counter);
-        this.called = Boolean.valueOf(called);
+        String[] parsed = counter.split(" ");
+        if (parsed.length == 1) {
+            this.called = false;
+        } else {
+            this.called = Boolean.valueOf(parsed[1]);
+        }
+        this.value = Integer.valueOf(parsed[0]);
     }
 
     /**
@@ -88,7 +82,7 @@ public class Counter {
 
     @Override
     public String toString() {
-        return String.valueOf(value) + " " + String.valueOf(called);
+        return value + " " + called;
     }
 
     @Override
