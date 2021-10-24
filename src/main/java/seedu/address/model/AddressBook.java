@@ -61,7 +61,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetCall() {
         for (Person i: persons) {
-            i.unCall();
+            persons.setPerson(i, new Person(i, i.getCounter().unCall()));
         }
     }
 

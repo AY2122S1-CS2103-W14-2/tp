@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import static seedu.address.model.Model.PREDICATE_SHOW_NON_CALLED;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -40,8 +41,16 @@ public class IncrementCommand extends Command {
         }
 
         Person personToIncrement = lastShownList.get(targetIndex.getZeroBased());
-        model.incrementPerson(personToIncrement);
-        return new CommandResult(String.format(MESSAGE_INCREMENT_PERSON_SUCCESS, personToIncrement));
+        Person newPerson = new Person(personToIncrement, personToIncrement.getCounter().increment());
+//        EditCommand.EditPersonDescriptor edp = new EditCommand.EditPersonDescriptor();
+//        edp.setCounter(personToIncrement.getCounter().increment());
+//        EditCommand ec = new EditCommand(targetIndex, edp);
+//        ec.execute(model);
+
+        model.setPerson(personToIncrement, newPerson);
+
+        model.updateFilteredPersonList(PREDICATE_SHOW_NON_CALLED);
+        return new CommandResult(String.format(MESSAGE_INCREMENT_PERSON_SUCCESS, newPerson));
     }
 
     @Override

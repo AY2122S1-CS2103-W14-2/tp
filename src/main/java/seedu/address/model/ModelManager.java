@@ -11,7 +11,15 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.CaseNumber;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.ShnPeriod;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -101,8 +109,15 @@ public class ModelManager implements Model {
 
     @Override
     public void incrementPerson(Person target) {
-        target.getCounter().increment();
-        updateFilteredPersonList(PREDICATE_SHOW_NON_CALLED);
+//        Name name, Phone phone, Email email, CaseNumber caseNumber, Address homeAddress,
+//            Optional<Address> workAddress, Optional<Address> quarantineAddress, Optional< ShnPeriod > shnPeriod,
+//            Optional<Name> nextOfKinName, Optional< seedu.address.model.person.Phone > nextOfKinPhone, Optional<Address> nextOfKinAddress
+
+
+//        Person incrementedPerson = new Person(target.getName(), target.getPhone(), target.getEmail(), target.getCaseNumber(), target.getHomeAddress(), target.)
+//        addressBook.setPerson(target, incrementedPerson);
+//        target.getCounter().increment();
+//        updateFilteredPersonList(PREDICATE_SHOW_NON_CALLED);
     }
 
     @Override

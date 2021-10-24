@@ -63,6 +63,16 @@ public class Person {
     }
 
     /**
+     * Constuctor for Person to create a copy that uses a new counter. Used to update immutable counter.
+     * @param old the previous version of the person.
+     * @param newCounter the new counter to be used.
+     */
+    public Person(Person old, Counter newCounter) {
+        this(old.name, old.phone, old.email, old.caseNumber, old.homeAddress, old.workAddress, old.quarantineAddress,
+             old.shnPeriod, old.nextOfKinName, old.nextOfKinPhone, old.nextOfKinAddress, newCounter);
+    }
+
+    /**
      * Short constructor for Person with no optional attributes.
      */
     public Person(Name name, Phone phone, Email email, CaseNumber caseNumber, Address homeAddress) {

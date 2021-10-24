@@ -41,9 +41,11 @@ public class CallCommand extends Command {
         }
 
         Person personToIncrement = lastShownList.get(targetIndex.getZeroBased());
-        model.callPerson(personToIncrement);
+        Person newPerson = new Person(personToIncrement, personToIncrement.getCounter().call());
+        model.setPerson(personToIncrement, newPerson);
+
         model.updateFilteredPersonList(PREDICATE_SHOW_NON_CALLED);
-        return new CommandResult(String.format(MESSAGE_CALL_PERSON_SUCCESS, personToIncrement));
+        return new CommandResult(String.format(MESSAGE_CALL_PERSON_SUCCESS, newPerson));
     }
 
     @Override

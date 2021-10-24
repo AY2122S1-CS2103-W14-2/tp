@@ -11,13 +11,13 @@ public class Counter {
     public static final String MESSAGE_CONSTRAINTS =
         "Counter should be a non-negative integer without left-padding 0s";
     public static final String VALIDATION_REGEX = "(^[1-9]+\\d*$)|^0$|((^[1-9]+\\d*)|^0) (true|false)";
-    private int value;
-    private boolean called;
+    private final int value;
+    private final boolean called;
 
     /**
      * Default {@code Counter} constructor.
      *
-     * @param counter A valid counter.
+     * @param counter A valid {@code Counter}.
      */
     public Counter(String counter) {
         this(counter.split(" ")[0], counter.split(" ")[1]);
@@ -26,13 +26,25 @@ public class Counter {
     /**
      * Constructs a {@code Counter}.
      *
-     * @param counter A valid counter.
+     * @param counter A valid {@code Counter}.
      */
     public Counter(String counter, String called) {
         requireNonNull(counter);
         checkArgument(isValidCounter(counter), MESSAGE_CONSTRAINTS);
-        value = Integer.parseInt(counter);
+        this.value = Integer.parseInt(counter);
         this.called = Boolean.valueOf(called);
+    }
+
+    /**
+     * {@code Counter} constuctor used by Counter's methods.
+     *
+     * @param counter A valid {@code Counter}.
+     */
+    public Counter(int counter, boolean called) {
+        requireNonNull(counter);
+        requireNonNull(called);
+        this.value = counter;
+        this.called = called;
     }
 
     /**
@@ -44,30 +56,18 @@ public class Counter {
 
     /**
      * Stores that the person has been called for the day.
-     * @return Whether the person was previously called for the day already.
+     * @return counter A new {@code Counter} storing that the person has been called.
      */
-    public boolean call() {
-        boolean res = called;
-        called = true;
-        return res;
+    public Counter call() {
+        return new Counter(value, true);
     }
 
     /**
-     * Sets the person as not being called. Primarily used to refresh called state for new schedules
-     * @return Whether the person was previously in called state.
+     * Sets the person as not being called. Primarily used to refresh called state for new schedules.
+     * @return counter A new {@code Counter} storing that the person has not been called.
      */
-    public boolean unCall() {
-        boolean res = called;
-        called = false;
-        return res;
-    }
-
-    /**
-     * Sets the person as not picking up for the day.
-     */
-    public void nonCompliant() {
-        this.call();
-        this.increment();
+    public Counter unCall() {
+        return new Counter(value, false);
     }
 
     /**
@@ -80,10 +80,10 @@ public class Counter {
 
     /**
      * Sets the person as not picking up for the day.
+     * @return counter A new {@code Counter} storing a call and non-compliance instance.
      */
-    public void increment() {
-        this.call();
-        this.value = this.value + 1;
+    public Counter increment() {
+        return new Counter(value + 1, true);
     }
 
     @Override
