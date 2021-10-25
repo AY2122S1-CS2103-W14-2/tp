@@ -35,7 +35,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_HOME_ADDRESS = BENSON.getHomeAddress().toString();
     private static final String VALID_WORK_ADDRESS = BENSON.getWorkAddress().toString();
     private static final String VALID_QUARANTINE_ADDRESS = BENSON.getQuarantineAddress().toString();
-    private static final String VALID_SHN_PERIOD = BENSON.getShnPeriod().get().toString();
+    private static final String VALID_SHN_PERIOD = BENSON.getShnPeriod().toString();
     private static final String VALID_NEXT_OF_KIN_NAME = BENSON.getNextOfKinName().toString();
     private static final String VALID_NEXT_OF_KIN_PHONE = BENSON.getNextOfKinPhone().toString();
     private static final String VALID_NEXT_OF_KIN_ADDRESS = BENSON.getNextOfKinAddress().toString();

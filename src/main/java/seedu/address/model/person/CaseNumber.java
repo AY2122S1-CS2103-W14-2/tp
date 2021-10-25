@@ -25,7 +25,10 @@ public class CaseNumber {
     }
 
     /**
-     * Returns true if a given string is a valid count.
+     * Tests validity of a given string as input to be parsed into {@code CaseNumber}
+     *
+     * @param test string to test
+     * @return bool whether the string is valid as an input.
      */
     public static boolean isValidCaseNumber(String test) {
         return test.matches(VALIDATION_REGEX);

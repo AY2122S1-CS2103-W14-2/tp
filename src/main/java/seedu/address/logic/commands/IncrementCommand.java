@@ -12,11 +12,12 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Indicates that a failed call was made to a person. This records that person has been called and increases recorded
+ * number of failed attempts.
  */
 public class IncrementCommand extends Command {
 
-    public static final String COMMAND_WORD = "increment";
+    public static final String COMMAND_WORD = "fcall";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Indicates that a person was non-responsive when an attempt to contact failed\n"

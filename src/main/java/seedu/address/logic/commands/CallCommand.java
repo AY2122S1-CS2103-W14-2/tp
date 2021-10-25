@@ -12,11 +12,11 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Indicates a person identified using its displayed index from the address book as called for the session.
  */
 public class CallCommand extends Command {
 
-    public static final String COMMAND_WORD = "call";
+    public static final String COMMAND_WORD = "scall";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Indicates that the person has been successfully called\n"
@@ -27,7 +27,13 @@ public class CallCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Default constructor to create a new {@code CallCommand}
+     *
+     * @param targetIndex index of target person.
+     */
     public CallCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 

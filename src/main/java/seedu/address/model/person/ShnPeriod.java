@@ -44,7 +44,10 @@ public class ShnPeriod {
     }
 
     /**
-     * Returns true if a given SHN period is a valid SHN period.
+     * Tests validity of a given dates as input to be parsed into {@code ShnPeriod}
+     * @param testStartDate date to test as start of period
+     * @param testEndDate date to test as end of period
+     * @return bool whether the dates is valid as range for ShnPeriod.
      */
     public static boolean isValidShnPeriod(LocalDate testStartDate, LocalDate testEndDate) {
         requireNonNull(testStartDate);
@@ -53,11 +56,13 @@ public class ShnPeriod {
     }
 
     /**
-     * Returns true if a given SHN period in string form is a valid SHN period.
+     * Tests validity of a given string as input to be parsed into {@code ShnPeriod}
+     * @param test string to test
+     * @return bool whether the string is valid as an input.
      */
-    public static boolean isValidShnPeriodString(String shnPeriod) {
-        requireNonNull(shnPeriod);
-        String[] dates = shnPeriod.split(" => ", 2);
+    public static boolean isValidShnPeriodString(String test) {
+        requireNonNull(test);
+        String[] dates = test.split(" => ", 2);
         LocalDate testStartDate = LocalDate.parse(dates[0]);
         LocalDate testEndDate = LocalDate.parse(dates[1]);
         return isValidShnPeriod(testStartDate, testEndDate);
