@@ -24,7 +24,8 @@ public class IncrementCommand extends Command {
         + "Parameters: INDEX (must be a positive integer)\n"
         + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_INCREMENT_PERSON_SUCCESS = "Incremented Person: %1$s";
+    public static final String MESSAGE_INCREMENT_PERSON_SUCCESS =
+        "Failed to call person: %s, New non-Compliance counter: %d";
 
     private final Index targetIndex;
 
@@ -47,7 +48,8 @@ public class IncrementCommand extends Command {
         model.setPerson(personToIncrement, newPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_NON_CALLED);
 
-        return new CommandResult(String.format(MESSAGE_INCREMENT_PERSON_SUCCESS, newPerson));
+        return new CommandResult(String.format(MESSAGE_INCREMENT_PERSON_SUCCESS, newPerson.getName(),
+            newPerson.getCounter().getNumFailedCalls()));
     }
 
     @Override

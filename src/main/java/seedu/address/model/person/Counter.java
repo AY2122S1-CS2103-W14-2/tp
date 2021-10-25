@@ -50,8 +50,6 @@ public class Counter {
         return test.matches(VALIDATION_REGEX);
     }
 
-
-
     /**
      * Stores that the person has been called for the day.
      * @return counter A new {@code Counter} storing that the person has been called.
@@ -74,6 +72,14 @@ public class Counter {
      */
     public boolean isCalledForCurrentSession() {
         return isCalledForCurrentSession;
+    }
+
+    /**
+     * Indicates number of times person has failed to pick up since the start of SHN period.
+     * @return Number of times person has failed to pick up since the start of SHN period.
+     */
+    public int getNumFailedCalls() {
+        return numFailedCalls;
     }
 
     /**

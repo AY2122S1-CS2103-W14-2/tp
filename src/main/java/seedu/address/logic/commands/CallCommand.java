@@ -23,7 +23,8 @@ public class CallCommand extends Command {
         + "Parameters: INDEX (must be a positive integer)\n"
         + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_CALL_PERSON_SUCCESS = "Called Person: %1$s";
+    public static final String MESSAGE_CALL_PERSON_SUCCESS =
+        "Successfully called Person: %s, Non-Compliance counter: %d";
 
     private final Index targetIndex;
 
@@ -51,7 +52,8 @@ public class CallCommand extends Command {
         model.setPerson(personToIncrement, newPerson);
 
         model.updateFilteredPersonList(PREDICATE_SHOW_NON_CALLED);
-        return new CommandResult(String.format(MESSAGE_CALL_PERSON_SUCCESS, newPerson));
+        return new CommandResult(String.format(MESSAGE_CALL_PERSON_SUCCESS, newPerson.getName(),
+            newPerson.getCounter().getNumFailedCalls()));
     }
 
     @Override
