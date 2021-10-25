@@ -392,13 +392,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.	User chooses to proceed.
 4.	Track2Gather clears all contacts.
 
-    Use case ends.
+Use case ends.
 
 **Extensions**
 
 * 2a. User chooses not to proceed with clearing all contacts.
-    
-    Use case ends.
+
+  Use case ends.
+
+**Use case: UC07 - Enforce SHN**
+
+**MSS:**
+
+1.  User chooses to create a new schedule to record who has to be called to enforce SHN.
+2.	Track2Gather resets all people as not called for the day and presents the persons to be called in a linear list.
+3.	User calls the first person successfully, and indicates that the person has been successfully called
+4.	Track2Gather removes the called person from the schedule list and records that they have been called for the day.
+5.  Repeat steps 3-4 until all people have been called.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. User indicates that the first person failed to answer the call
+      * 2a1. Track2Gather records that the first person has failed to answer the call and removes the person from the 
+           current session's schedule
+      Use case resumes from step 5
 
 
 *{More to be added}*

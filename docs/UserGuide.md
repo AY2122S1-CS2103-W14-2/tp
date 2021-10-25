@@ -37,6 +37,16 @@ Track2Gather is a **desktop app for contact tracing personnel at the [Ministry o
     * **`list`** : Shows a list of all persons.
 
     * **`clear`** : Deletes all persons.
+
+    * **`schedule`** : Create a new schedule listing people to be called for a new SHN enforcement session.
+
+    * **`scall`** : Marks a person as successfully called for the current SHN enforcement session.
+
+    * **`fcall`** : Marks a person as unsuccessfully called for the current SHN enforcement session.
+
+    * **`session`** : Retrieves people who have not yet been attempted to call.
+    
+    * **`clear`** : Deletes all persons.
     
     * **`help`** : Shows a message explaining how to access the help page.
 
@@ -134,6 +144,45 @@ Deletes all the persons in the persons list.
 
 Format: `clear`
 
+### Creating new schedule : `schedule`
+
+Create a new schedule listing people to be called for a new SHN enforcement session, and marks all people as not called.
+
+Format: `schedule`
+
+### Successfully calling a person : `scall`
+
+Marks a person as successfully called for the current SHN enforcement session.
+
+Format: `scall INDEX`
+* Marks the persons at the specified `INDEX` as called, and removes that person from session view.
+* The index **must be a positive integer** (e.g. 1, 2, 3, ..)
+* The index **must not exceed the total number of persons** in the persons list
+
+Examples:
+* `schedule` followed by `scall 1` marks the first person in the new schedule as successfully called, and removes that
+person from the schedule view.
+
+### Unsuccessfully calling a person : `fcall`
+
+Marks a person as unsuccessfully called for the current SHN enforcement session.
+
+Format: `scall INDEX`
+* Marks the person at the specified `INDEX` as called, increases the person's non-compliance counter, and removes that 
+  person from session view.
+* The index **must be a positive integer** (e.g. 1, 2, 3, ..)
+* The index **must not exceed the total number of persons** in the persons list
+
+Examples:
+* `schedule` followed by `fcall 1` marks the first person in the new schedule as unsuccessfully called, and removes that
+  person from the schedule view.
+
+### Retrieving schedule of current session : `session`
+
+Retrieve schedule listing people to be called for a current SHN enforcement session.
+
+Format: `session`
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -177,5 +226,9 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **List** | `list`
 **Clear** | `clear`
+**Schedule** | `schedule`
+**Scall** | `scall INDEX`<br> e.g., `scall 3`
+**Fcall** | `fcall INDEX`<br> e.g., `fcall 3`
+**Session** | `session`
 **Help** | `help`
 **Exit** | `exit`
