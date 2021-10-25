@@ -21,6 +21,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_CASE_NUMBER = "456";
     public static final String DEFAULT_HOME_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_COUNTER = "0 false";
 
     private Name name;
     private Phone phone;
@@ -50,7 +51,7 @@ public class PersonBuilder {
         nextOfKinName = Optional.empty();
         nextOfKinPhone = Optional.empty();
         nextOfKinAddress = Optional.empty();
-        counter = new Counter("0 false");
+        counter = new Counter(DEFAULT_COUNTER);
     }
 
     /**

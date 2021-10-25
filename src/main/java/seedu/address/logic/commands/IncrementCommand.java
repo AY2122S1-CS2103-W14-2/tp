@@ -12,18 +12,20 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Indicates that a failed call was made to a person. This records that person has been called and increases recorded
+ * number of failed attempts.
  */
 public class IncrementCommand extends Command {
 
-    public static final String COMMAND_WORD = "increment";
+    public static final String COMMAND_WORD = "fcall";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Indicates that a person was non-responsive when an attempt to contact failed\n"
         + "Parameters: INDEX (must be a positive integer)\n"
         + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_INCREMENT_PERSON_SUCCESS = "Incremented Person: %1$s";
+    public static final String MESSAGE_INCREMENT_PERSON_SUCCESS =
+        "Failed to call person: %s, New non-Compliance counter: %d";
 
     private final Index targetIndex;
 
@@ -46,7 +48,8 @@ public class IncrementCommand extends Command {
         model.setPerson(personToIncrement, newPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_NON_CALLED);
 
-        return new CommandResult(String.format(MESSAGE_INCREMENT_PERSON_SUCCESS, newPerson));
+        return new CommandResult(String.format(MESSAGE_INCREMENT_PERSON_SUCCESS, newPerson.getName(),
+            newPerson.getCounter().getNumFailedCalls()));
     }
 
     @Override

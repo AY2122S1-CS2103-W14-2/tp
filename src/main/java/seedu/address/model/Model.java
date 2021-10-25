@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-    Predicate<Person> PREDICATE_SHOW_NON_CALLED = person -> person.getCounter().isCalled() == false;
+    Predicate<Person> PREDICATE_SHOW_NON_CALLED = person -> !person.getCounter().isCalledForCurrentSession();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

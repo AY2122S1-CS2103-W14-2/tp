@@ -284,7 +284,7 @@ public class EditCommand extends Command {
         }
 
         public Optional<Counter> getCounter() {
-            return Optional.ofNullable(this.counter);
+            return Optional.ofNullable(counter);
         }
 
         @Override

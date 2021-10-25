@@ -32,7 +32,9 @@ public class Name {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Tests validity of a given string as input to be parsed into {@code Name}
+     * @param test string to test
+     * @return bool whether the string is valid as an input.
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
