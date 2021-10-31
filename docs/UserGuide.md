@@ -28,13 +28,13 @@ Track2Gather is a **desktop app for contact tracing personnel at the [Ministry o
 
     * **`add`** : Adds a person to the persons list.
 
-    * **`delete`** : Deletes a person at the specified index.
+    * **`delete`** : Deletes person(s) at the specified index(s).
 
-    * **`edit`** : Edit an existing person’s details at the specified index.
+    * **`edit`** : Edits the details of a person at the specified index.
    
-    * **`find`** : Find a person by name, phone, case number, SHN start date or SHN end date.
+    * **`find`** : Finds person(s) by name, phone, case number, SHN start date or SHN end date.
 
-    * **`tshift`** : Shifts all person's SHN end dates by the specified number of days.
+    * **`tshift`** : Shifts all persons' SHN end dates by the specified number of days.
    
     * **`list`** : Shows a list of all persons.
 
@@ -42,13 +42,13 @@ Track2Gather is a **desktop app for contact tracing personnel at the [Ministry o
 
     * **`clear`** : Deletes all persons with SHN periods that are completed at time of command call.
 
+    * **`session`** : Starts a new SHN enforcement session with all persons set to 'not called'.
+
     * **`schedule`** : Shows a list of all persons who have not been called in the current SHN enforcement session.
 
     * **`scall`** : Updates a person as successfully called in the current SHN enforcement session.
 
     * **`fcall`** : Updates that a failed call was made to a person in the current SHN enforcement session.
-
-    * **`session`** : Starts a new SHN enforcement session with all persons set to non-called.
     
     * **`help`** : Shows a message explaining how to access the help page.
 
@@ -166,7 +166,7 @@ Examples:
 * `sort n/` followed by `delete 2` deletes the 2nd person in the persons list when sorted by name. 
 * `sort cn/` followed by `delete 1 4 5` deletes the 1st, 4th and 5th persons in the persons list when sorted by case
   number.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command, if any.
+* `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command, if any.
 
 ### Listing all persons : `list`
 
@@ -196,11 +196,54 @@ Deletes all persons with SHN periods that are completed at time of command call 
 
 Format: `clear`
 
-### Showing call schedule : `schedule`
+### SHN enforcement mode
+SHN enforcement mode contains a special group of features that enables users to track the call statuses of persons in Track2Gather. 
+The purpose of this mode is to facilitate the calling of persons to enforce their SHN. 
 
-Shows a list of all persons who have not been called in the current SHN enforcement session.
+The intended use of this mode is to:
+* create a new calling session every day (henceforth referred to as 'SHN enforcement session').
+* mark successful/failed attempts to contact the persons in order to track their behaviour throughout their SHN.
+
+In SHN enforcement mode, all people who have been called for the current SHN enforcement session will be *filtered away from the schedule and thus the display i.e. they will not show up on the interface.*
+
+There are 4 features relevant to this mode: `session`, `schedule`, `scall`, and `fcall`.
+* `session` and `schedule` activate SHN enforcement mode.
+* `scall` and `fcall` are intended to work best in SHN enforcement mode, but can be used outside of enforcement mode.
+
+#### How the information is reflected on the interface
+Under Call Status for each person, there are two components:
+* Call status indicator
+  * Represents whether a person has been called in the current SHN enforcement session.
+  * Displayed as 'Called:' followed by a red cross or green tick.
+  * Red cross indicates that a person has not been called for the current SHN enforcement session.
+  * Green tick indicates that a person has been called for the current SHN enforcement session, regardless of whether the call was successful.
+* Non-compliance counter 
+  * Represents the number of failed attempts that have been made to call the person 
+  * Displayed as 'Failed: X time(s)' where X is the number of failed call attempts 
+  * The number of failed call attempts recorded is cumulative over the entire period of Track2Gather usage. It does not reset to zero when a new SHN enforcement session is created.
+
+#### Important notes
+* `add`, `edit`, `find`, `tshift` and `list` commands deactivate enforcement mode.
+* At any point in time, there is only 1 ongoing SHN enforcement session.
+* Previous sessions cannot be accessed.
+
+### Starting a new SHN enforcement session : `session`
+
+Starts a new SHN enforcement session by resetting the call status indicators of all persons to red crosses.
+
+Format: `session`
+
+* Displays the full list of persons, in which the call status indicator for all persons will display a red cross.
+* Activates SHN enforcement mode.
+
+### Showing the current SHN enforcement session : `schedule`
+
+Displays a filtered list of all persons who have not been called in the current SHN enforcement session.
 
 Format: `schedule`
+
+* Displays the list of persons who have not been called in the current SHN enforcement session i.e. those whose call status indicators are red crosses.
+* Activates SHN enforcement mode.
 
 ### Updating a person as successfully called : `scall`
 
@@ -211,11 +254,15 @@ Format: `scall INDEX`
 * Updates the person at the specified `INDEX` as called.
 * The index **must be a positive integer** (e.g. 1, 2, 3, ..)
 * The index **must not exceed the total number of persons** in the contacts list
-* If `session` or `schedule` was previously called, the person at the specified `INDEX` will be removed from the list.
+* If Track2Gather is in enforcement mode, the person at the specified index will be removed from the schedule and thus the display.
+* If Track2Gather is not in enforcement mode, the person at the specified index will have its call status indicator changed to a green tick.
 
-Examples:
-* `scall 1` updates the first person in the list as called.
-* `session` followed by `scall 1` updates the first person in the list as called and removes the person from the list.
+Example when not in SHN enforcement mode:
+* `scall 1` updates the first person in the list by changing the person's call status indicator to a green tick.
+
+Example when in SHN enforcement mode:
+* `scall 1` removes the first person in the list from the schedule and thus the display.
+    * Note that the first person's call status indicator is also updated (as in the above example), except the person can now only be viewed outside SHN enforcement mode.
 
 ### Updating a person as unsuccessfully called : `fcall`
 
@@ -225,19 +272,18 @@ Format: `fcall INDEX`
 * Updates the person at the specified `INDEX` as called, and increments the person's non-compliance counter by 1.
 * The index **must be a positive integer** (e.g. 1, 2, 3, ..)
 * The index **must not exceed the total number of persons** in the contacts list
-* If `session` or `schedule` was previously called, the person at the specified `INDEX` will be removed from the list.
+* If Track2Gather is in SHN enforcement mode, the person at the specified index will be removed from the schedule and thus the display.
+* If Track2Gather is not in SHN enforcement mode, the person at the specified index will have its call status indicator changed to a green tick, and non-compliance counter incremented by 1.
 
-Examples:
-* `fcall 1` updates the first person in the list as called, and increments the person's non-compliance counter by 1.
-* `session` followed by `fcall 1` updates the first person in the list as called, increments the person's non-compliance counter by 1, and removes the person from the list.
+Example when not in SHN enforcement mode:
+* `fcall 1` updates the first person in the list by:
+  * changing the person's call status indicator to a green tick.
+  * incrementing the person's non-compliance counter by 1.
 
-### Starting a new SHN enforcement session : `session`
-
-Starts a new SHN enforcement session with all persons set to non-called.
-
-Format: `session`
-* Shows a list of all persons who have not been called in the current SHN enforcement session.
-
+Example when in SHN enforcement mode:
+* `fcall 1` removes the first person in the list from the schedule and thus the display.
+    * Note that the first person's call status indicator and non-compliance counter are also updated (as in the above example), except the person can now only be viewed outside SHN enforcement mode.
+    
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
