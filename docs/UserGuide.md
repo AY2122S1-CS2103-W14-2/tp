@@ -204,14 +204,14 @@ The intended use of this mode is to:
 * create a new calling session every day (henceforth referred to as 'SHN enforcement session').
 * mark successful/failed attempts to contact the persons in order to track their behaviour throughout their SHN.
 
-In SHN enforcement mode, all people who have been called for the current SHN enforcement session will be *filtered away from the schedule and thus the display i.e. they will not show up on the interface.*
+In SHN enforcement mode, all people who have been called for the current SHN enforcement session will be *filtered out of the schedule and hidden from the interface.*
 
 There are 4 features relevant to this mode: `session`, `schedule`, `scall`, and `fcall`.
 * `session` and `schedule` activate SHN enforcement mode.
 * `scall` and `fcall` are intended to work best in SHN enforcement mode, but can be used outside of enforcement mode.
 
 #### How the information is reflected on the interface
-Under Call Status for each person, there are two components:
+Under `Call Status` for each person, there are two components:
 * Call status indicator
   * Represents whether a person has been called in the current SHN enforcement session.
   * Displayed as 'Called:' followed by a red cross or green tick.
@@ -255,6 +255,7 @@ Format: `scall INDEX`
 * The index **must be a positive integer** (e.g. 1, 2, 3, ..)
 * The index **must not exceed the total number of persons** in the contacts list
 * If Track2Gather is in enforcement mode, the person at the specified index will be removed from the schedule and thus the display.
+  * Note that the person at the specified index will have its call status indicator changed to a green tick.
 * If Track2Gather is not in enforcement mode, the person at the specified index will have its call status indicator changed to a green tick.
 
 Example when not in SHN enforcement mode:
@@ -273,6 +274,7 @@ Format: `fcall INDEX`
 * The index **must be a positive integer** (e.g. 1, 2, 3, ..)
 * The index **must not exceed the total number of persons** in the contacts list
 * If Track2Gather is in SHN enforcement mode, the person at the specified index will be removed from the schedule and thus the display.
+  * Note that the person at the specified index will have its call status indicator changed to a green tick.
 * If Track2Gather is not in SHN enforcement mode, the person at the specified index will have its call status indicator changed to a green tick, and non-compliance counter incremented by 1.
 
 Example when not in SHN enforcement mode:
