@@ -274,7 +274,7 @@ Format: `fcall INDEX`
 * The index **must be a positive integer** (e.g. 1, 2, 3, ..)
 * The index **must not exceed the total number of persons** in the contacts list
 * If Track2Gather is in SHN enforcement mode, the person at the specified index will be removed from the schedule and thus the display.
-  * Note that the person at the specified index will have its call status indicator changed to a green tick.
+  * Note that the person at the specified index will have its call status indicator changed to a green tick and its non-compliance counter incremented by 1.
 * If Track2Gather is not in SHN enforcement mode, the person at the specified index will have its call status indicator changed to a green tick, and non-compliance counter incremented by 1.
 
 Example when not in SHN enforcement mode:
