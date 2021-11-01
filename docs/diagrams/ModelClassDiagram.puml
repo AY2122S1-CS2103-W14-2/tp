@@ -29,7 +29,7 @@ Class ShnPeriod
 Class NextOfKinName
 Class NextOfKinPhone
 Class NextOfKinAddress
-Class Counter
+Class CallStatus
 
 }
 
@@ -58,7 +58,7 @@ Person *--> "0..1" ShnPeriod
 Person *--> "0..1" NextOfKinName
 Person *--> "0..1" NextOfKinPhone
 Person *--> "0..1" NextOfKinAddress
-Person *--> Counter
+Person *--> CallStatus
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Email
@@ -70,7 +70,7 @@ QuarantineAddress -[hidden]right-> ShnPeriod
 ShnPeriod -[hidden]right-> NextOfKinName
 NextOfKinName -[hidden]right-> NextOfKinPhone
 NextOfKinPhone -[hidden]right-> NextOfKinAddress
-NextOfKinAddress -[hidden]right-> Counter
+NextOfKinAddress -[hidden]right-> CallStatus
 
 ModelManager -->"~* filtered" Person
 @enduml
