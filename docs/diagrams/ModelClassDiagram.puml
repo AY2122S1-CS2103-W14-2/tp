@@ -22,6 +22,7 @@ Class Name
 Class Phone
 Class Email
 Class CaseNumber
+Class Address
 Class HomeAddress
 Class WorkAddress
 Class QuarantineAddress
@@ -60,17 +61,25 @@ Person *--> "0..1" NextOfKinPhone
 Person *--> "0..1" NextOfKinAddress
 Person *--> CallStatus
 
+Address -[hidden]right-> Name
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Email
-Email -[hidden]right-> CaseNumber
-CaseNumber -[hidden]right-> HomeAddress
+
 HomeAddress -[hidden]right-> WorkAddress
 WorkAddress -[hidden]right-> QuarantineAddress
-QuarantineAddress -[hidden]right-> ShnPeriod
-ShnPeriod -[hidden]right-> NextOfKinName
+QuarantineAddress -[hidden]right-> NextOfKinAddress
+NextOfKinAddress -[hidden]right-> NextOfKinName
 NextOfKinName -[hidden]right-> NextOfKinPhone
-NextOfKinPhone -[hidden]right-> NextOfKinAddress
-NextOfKinAddress -[hidden]right-> CallStatus
+NextOfKinPhone -[hidden]right-> Email
+Email -[hidden]right-> CaseNumber
+CaseNumber -[hidden]right-> ShnPeriod
+ShnPeriod -[hidden]right-> CallStatus
+
+HomeAddress ..> Address
+WorkAddress ..> Address
+QuarantineAddress ..> Address
+NextOfKinName ..> Name
+NextOfKinPhone ..> Phone
+NextOfKinAddress ..> Address
 
 ModelManager -->"~* filtered" Person
 @enduml
