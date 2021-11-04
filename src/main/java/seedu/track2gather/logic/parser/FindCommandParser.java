@@ -15,6 +15,8 @@ import java.util.stream.Stream;
 import seedu.track2gather.logic.commands.FindCommand;
 import seedu.track2gather.logic.parser.exceptions.ParseException;
 import seedu.track2gather.model.person.CaseNumber;
+import seedu.track2gather.model.person.Name;
+import seedu.track2gather.model.person.Phone;
 import seedu.track2gather.model.person.ShnPeriod;
 import seedu.track2gather.model.person.predicates.CaseNumberEqualsKeywordsPredicate;
 import seedu.track2gather.model.person.predicates.NameContainsKeywordsPredicate;
@@ -56,10 +58,18 @@ public class FindCommandParser implements Parser<FindCommand> {
         String[] keywords = value.split("\\s+");
         List<String> keywordList = Arrays.asList(keywords);
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            boolean areValidNames = keywordList.stream().allMatch(Name::isValidName);
+            if (!areValidNames) {
+                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            }
             return new FindCommand(new NameContainsKeywordsPredicate(keywordList));
         }
 
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            boolean areValidPhones = keywordList.stream().allMatch(Phone::isValidPhoneKeyword);
+            if (!areValidPhones) {
+                throw new ParseException(Phone.MESSAGE_CONSTRAINTS_KEYWORD);
+            }
             return new FindCommand(new PhoneStartsWithKeywordsPredicate(keywordList));
         }
 
