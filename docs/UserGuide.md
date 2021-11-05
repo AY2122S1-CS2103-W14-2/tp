@@ -85,7 +85,7 @@ Refer to the [Features](#features) below for details of each command.
 
 Field | Format
 ------|------------------
-`NAME` | Names should only contain alphanumeric characters and spaces, and should not be blank.
+`NAME` | Names should not be blank and should not only contain whitespace.
 `PHONE_NUMBER` | Phone numbers should only contain numbers and should be at least 3 digits long.
 `EMAIL` | Emails should be of the format local-part@domain. <br> The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. This is followed by a '@' and then a domain name. <br> The domain name is made up of domain labels separated by periods. The domain name must end with a domain label at least 2 characters long, have each domain label start and end with alphanumeric characters and must have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 `CASE_NUMBER` | Case numbers should be input as positive integers with no leading zeros. Case numbers can be anywhere from 1 to 6 digits long. Note that case numbers are displayed in a fixed format of 6 digits, padded with zeros on the left, if needed.
@@ -93,7 +93,7 @@ Field | Format
 `WORK_ADDRESS` | Addresses can be any non-empty string of characters.
 `QUARANTINE_ADDRESS` | Addresses can be any non-empty string of characters.
 `SHN_PERIOD` | SHN periods should comprise of two dates in the [ISO-8601 format](https://www.iso.org/iso-8601-date-and-time-format.html) (i.e. yyyy-MM-dd), separated by a space. The start date should be keyed before the end date, and must occur earlier than the end date by at least 1 day.
-`NEXT_OF_KIN_NAME` | Names should only contain alphanumeric characters and spaces, and should not be blank.
+`NEXT_OF_KIN_NAME` | Names should not be blank and should not only contain whitespace.
 `NEXT_OF_KIN_PHONE` | Phone numbers should only contain numbers and should be at least 3 digits long.
 `NEXT_OF_KIN_ADDRESS` | Addresses can be any non-empty string of characters.
 
