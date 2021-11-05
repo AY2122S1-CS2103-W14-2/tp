@@ -7,9 +7,9 @@ import static seedu.track2gather.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidCaseNumber(String)}
  */
 public class CaseNumber extends Attribute<String> implements Comparable<CaseNumber> {
-    public static final String MESSAGE_CONSTRAINTS = "Case numbers should contain only positive integers with no "
+    public static final String MESSAGE_CONSTRAINTS = "Case numbers should contain only integers with no "
             + "leading zeros, and must be between 1 to 6 digits long.";
-    public static final String MESSAGE_CONSTRAINTS_KEYWORDS = "Case number keywords should contain only positive "
+    public static final String MESSAGE_CONSTRAINTS_KEYWORDS = "Case number keywords should contain only "
             + "integers with no leading zeros, and must be between 1 to 6 digits long.";
     public static final String VALIDATION_REGEX = "^[1-9]\\d{0,5}$";
 

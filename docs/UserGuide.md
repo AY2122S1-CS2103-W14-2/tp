@@ -88,7 +88,7 @@ Field | Format
 `NAME` | Names should only contain alphanumeric characters and spaces, and should not be blank.
 `PHONE_NUMBER` | Phone numbers should only contain integers and should be at least 3 digits long.
 `EMAIL` | Emails should be of the format local-part@domain. <br> The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. This is followed by a '@' and then a domain name. <br> The domain name is made up of domain labels separated by periods. The domain name must end with a domain label at least 2 characters long, have each domain label start and end with alphanumeric characters and must have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-`CASE_NUMBER` | Case numbers should be input as positive integers with no leading zeros. Case numbers can be anywhere from 1 to 6 digits long. Note that case numbers are displayed in a fixed format of 6 digits, padded with zeros on the left, if needed.
+`CASE_NUMBER` | Case numbers should be input as integers with no leading zeros. Case numbers can be anywhere from 1 to 6 digits long. Note that case numbers are displayed in a fixed format of 6 digits, padded with zeros on the left, if needed.
 `HOME_ADDRESS` | Addresses can be any non-empty string of characters.
 `WORK_ADDRESS` | Addresses can be any non-empty string of characters.
 `QUARANTINE_ADDRESS` | Addresses can be any non-empty string of characters.
